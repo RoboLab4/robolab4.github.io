@@ -124,6 +124,9 @@
       aspect-ratio: 4 / 3;
       cursor: pointer;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .gallery-item img {
@@ -162,6 +165,23 @@
       color: var(--cyan);
       font-size: 2rem;
       filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.8));
+    }
+
+    /* Стиль для отсутствующих/ошибочных фото */
+    .photo-error {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #64748b;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .photo-error i {
+      font-size: 2rem;
+      color: var(--orange);
     }
 
     /* Модальное окно просмотра фото */
@@ -246,22 +266,53 @@
   </footer>
 
   <script>
-    // Генерация элементов галереи от 1.jpg до 20.jpg прямо из корневой папки
     const galleryGrid = document.getElementById('galleryGrid');
     const totalPhotos = 20;
 
     for (let i = 1; i <= totalPhotos; i++) {
       const item = document.createElement('div');
       item.className = 'gallery-item';
-      item.onclick = () => openModal(`${i}.jpg`);
+
+      const fileName = `${i}.jpg`;
 
       item.innerHTML = `
-        <img src="${i}.jpg" alt="Фото ${i}" loading="lazy" onerror="this.onerror=null; this.parentNode.style.display='none';">
+        <img src="${fileName}" alt="Фото ${i}" loading="lazy" 
+             onload="this.style.display='block'" 
+             onerror="handleImageError(this, '${fileName}')">
         <div class="gallery-overlay">
           <i class="fa-solid fa-magnifying-glass-plus"></i>
         </div>
       `;
+
+      item.onclick = (e) => {
+        // Открывать модальное окно только если картинка существует и загрузилась
+        const img = item.querySelector('img');
+        if (img && img.style.display !== 'none') {
+          openModal(fileName);
+        }
+      };
+
       galleryGrid.appendChild(item);
+    }
+
+    // Обработка ненайденного или поврежденного файла
+    function handleImageError(imgElement, fileName) {
+      imgElement.style.display = 'none';
+      const parent = imgElement.parentNode;
+      
+      // Скрываем overlay при ошибке
+      const overlay = parent.querySelector('.gallery-overlay');
+      if (overlay) overlay.style.display = 'none';
+
+      // Создаем плашку-уведомление
+      const errorBox = document.createElement('div');
+      errorBox.className = 'photo-error';
+      errorBox.innerHTML = `
+        <i class="fa-solid fa-image"></i>
+        <span>Файл <strong>${fileName}</strong><br>не найден</span>
+      `;
+      parent.appendChild(errorBox);
+      parent.style.cursor = 'default';
     }
 
     // Логика открытия/закрытия модального окна
@@ -275,6 +326,11 @@
     function closeModal() {
       document.getElementById('imageModal').classList.remove('active');
     }
+
+    // Закрытие модального окна по клавише ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
   </script>
 
 </body>
