@@ -246,17 +246,17 @@
   </footer>
 
   <script>
-    // Генерация элементов галереи от 1.jpeg до 20.jpeg из папки photo/
+    // Генерация элементов галереи от 1.jpg до 20.jpg прямо из корневой папки
     const galleryGrid = document.getElementById('galleryGrid');
     const totalPhotos = 20;
 
     for (let i = 1; i <= totalPhotos; i++) {
       const item = document.createElement('div');
       item.className = 'gallery-item';
-      item.onclick = () => openModal(`photo/${i}.jpeg`);
+      item.onclick = () => openModal(`${i}.jpg`);
 
       item.innerHTML = `
-        <img src="photo/${i}.jpeg" alt="Фото ${i}" loading="lazy" onerror="this.onerror=null; this.parentNode.style.display='none';">
+        <img src="${i}.jpg" alt="Фото ${i}" loading="lazy" onerror="this.onerror=null; this.parentNode.style.display='none';">
         <div class="gallery-overlay">
           <i class="fa-solid fa-magnifying-glass-plus"></i>
         </div>
