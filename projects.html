@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Инженерные проекты | ROBO-LAB</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --cyan: #00f3ff;
+      --orange: #ff6b00;
+      --purple: #9d00ff;
+      --green: #00ff88;
+      --bg-dark: #050811;
+      --card-bg: rgba(13, 22, 41, 0.9);
+      --glass-border: rgba(0, 243, 255, 0.25);
+      --text: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(5, 8, 17, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-btn {
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: rgba(0, 243, 255, 0.05);
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.15);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title p {
+      color: var(--cyan);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--cyan);
+      box-shadow: 0 15px 35px rgba(0, 243, 255, 0.25);
+    }
+
+    .project-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(0,243,255,0.1), rgba(157,0,255,0.1));
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+    }
+
+    .project-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-author {
+      font-size: 0.85rem;
+      color: var(--orange);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-desc {
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #94a3b8;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+    }
+
+    .award-badge-mini {
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      margin-top: 4rem;
+      background: rgba(5, 8, 17, 0.9);
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-btn">
+        <i class="fa-solid fa-arrow-left"></i> На главную
+      </a>
+      <span class="brand-title">ROBO-LAB / ПРОЕКТЫ</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>Проектная деятельность</h1>
+      <p>Творческие, научные и спортивные разработки участников лаборатории</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Проект 1 -->
+      <div class="project-card">
+        <div class="project-img-placeholder">
+          <i class="fa-solid fa-leaf fa-3x" style="margin-bottom: 10px;"></i>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Экологический проект</span>
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="project-author"><i class="fa-solid fa-user"></i> Автор: Князев Денис</div>
+            <h3 class="project-title">Виртуальное путешествие «Моя инициатива – моей Родине»</h3>
+            <p class="project-desc">Интерактивный цифровой проект, посвященный экологии родного края, сохранению природных ресурсов и цифровому краеведению.</p>
+            <div class="project-tags">
+              <span class="tag">ProEco</span>
+              <span class="tag">IT-Проект</span>
+              <span class="tag">Экология</span>
+            </div>
+          </div>
+          <div class="award-badge-mini">
+            <i class="fa-solid fa-trophy"></i> 1 место (Областной / Городской этап)[cite: 3]
+          </div>
+        </div>
+      </div>
+
+      <!-- Проект 2 -->
+      <div class="project-card">
+        <div class="project-img-placeholder">
+          <i class="fa-solid fa-car-side fa-3x" style="margin-bottom: 10px; color: var(--orange);"></i>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Спортивная робототехника</span>
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="project-author"><i class="fa-solid fa-user"></i> Авторы: Гончар Ф., Андерсон И., Лачин М.</div>
+            <h3 class="project-title">Робот «Жинаңыз және бағдарламалаңыз»</h3>
+            <p class="project-desc">Скоростной робот с оптимизированной механикой и точным программированием датчиков для прохождения сложных трасс.</p>
+            <div class="project-tags">
+              <span class="tag">LEGO / RED</span>
+              <span class="tag">Датчики цвета</span>
+              <span class="tag">Алгоритмы</span>
+            </div>
+          </div>
+          <div class="award-badge-mini">
+            <i class="fa-solid fa-trophy"></i> 1 и 2 место (Областные соревнования 2025)[cite: 3]
+          </div>
+        </div>
+      </div>
+
+      <!-- Проект 3 -->
+      <div class="project-card">
+        <div class="project-img-placeholder">
+          <i class="fa-solid fa-microchip fa-3x" style="margin-bottom: 10px; color: var(--purple);"></i>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Научно-исследовательский проект</span>
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="project-author"><i class="fa-solid fa-user"></i> Автор: Сисина Арина</div>
+            <h3 class="project-title">Исследовательский проект «Зерде»</h3>
+            <p class="project-desc">Научная работа по прикладным дисциплинам и цифровой грамотности для городского конкурса исследовательских работ.</p>
+            <div class="project-tags">
+              <span class="tag">Зерде</span>
+              <span class="tag">Исследования</span>
+              <span class="tag">Наука</span>
+            </div>
+          </div>
+          <div class="award-badge-mini">
+            <i class="fa-solid fa-certificate"></i> Сертификат участника 2024[cite: 3]
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>Персональный сайт-блог педагога дополнительного образования Свиренко В. И. &copy; 2026</p>
+  </footer>
+
+</body>
+</html>
