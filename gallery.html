@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Галерея | ROBO-LAB</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --cyan: #00f3ff;
+      --orange: #ff6b00;
+      --purple: #9d00ff;
+      --bg-dark: #050811;
+      --card-bg: rgba(13, 22, 41, 0.9);
+      --glass-border: rgba(0, 243, 255, 0.25);
+      --text: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(5, 8, 17, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-btn {
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: rgba(0, 243, 255, 0.05);
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.15);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title p {
+      color: var(--cyan);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    /* Сетка фотогалереи */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 8, 17, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      color: var(--cyan);
+      font-size: 2rem;
+      filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.8));
+    }
+
+    /* Модальное окно просмотра фото */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(5, 8, 17, 0.95);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .modal-close:hover {
+      color: var(--orange);
+    }
+
+    footer {
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      margin-top: 4rem;
+      background: rgba(5, 8, 17, 0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-btn">
+        <i class="fa-solid fa-arrow-left"></i> На главную
+      </a>
+      <span class="brand-title">ROBO-LAB / ГАЛЕРЕЯ</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>Фотогалерея</h1>
+      <p>Кадры с занятий, соревнований и сборки проектов</p>
+    </div>
+
+    <!-- Автоматически наполняемая сетка -->
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+
+  <!-- Модальное окно для полноэкранного просмотра -->
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-img" id="modalImg" src="" alt="Фото просмотра">
+  </div>
+
+  <footer>
+    <p>Персональный сайт-блог педагога дополнительного образования Свиренко В. И. &copy; 2026</p>
+  </footer>
+
+  <script>
+    // Генерация элементов галереи от 1.jpeg до 20.jpeg из папки photo/
+    const galleryGrid = document.getElementById('galleryGrid');
+    const totalPhotos = 20;
+
+    for (let i = 1; i <= totalPhotos; i++) {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.onclick = () => openModal(`photo/${i}.jpeg`);
+
+      item.innerHTML = `
+        <img src="photo/${i}.jpeg" alt="Фото ${i}" loading="lazy" onerror="this.onerror=null; this.parentNode.style.display='none';">
+        <div class="gallery-overlay">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </div>
+      `;
+      galleryGrid.appendChild(item);
+    }
+
+    // Логика открытия/закрытия модального окна
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = src;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+  </script>
+
+</body>
+</html>
