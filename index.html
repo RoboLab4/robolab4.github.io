@@ -3,59 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Кружок Робототехники | Свиренко В.И. | Персональный сайт педагога</title>
-  <!-- Шрифты Google Fonts и иконки FontAwesome -->
+  <title>Кружок Робототехники | Свиренко В.И.</title>
+  
+  <!-- Шрифты Google Fonts и FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --primary-color: #00d2ff;
-      --secondary-color: #0072ff;
-      --accent-color: #ff6b08;
-      --bg-dark: #0a0f1d;
-      --card-bg: #131b2e;
-      --text-light: #ecf0f1;
-      --text-muted: #94a3b8;
+      --cyan: #00f3ff;
+      --orange: #ff6b00;
+      --purple: #9d00ff;
+      --bg-dark: #050811;
+      --card-bg: rgba(13, 22, 41, 0.75);
+      --glass-border: rgba(0, 243, 255, 0.2);
+      --text: #e2e8f0;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Rajdhani', sans-serif;
       background-color: var(--bg-dark);
-      color: var(--text-light);
-      line-height: 1.6;
+      color: var(--text);
+      overflow-x: hidden;
+      font-size: 1.1rem;
     }
 
-    h1, h2, h3, .brand-logo {
+    /* Анимированный Canvas на заднем плане */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    h1, h2, h3, .cyber-font {
       font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* Шапка сайта */
+    /* Кибернетическая Шапка */
     header {
-      background: rgba(19, 27, 46, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(5, 8, 17, 0.85);
+      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 2px solid var(--primary-color);
-      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.15);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
     }
 
     .nav-container {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 0.8rem 2rem;
     }
 
     .logo {
@@ -63,372 +79,520 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: var(--text-light);
+      color: #fff;
     }
 
     .logo i {
-      font-size: 2rem;
-      color: var(--primary-color);
+      font-size: 2.2rem;
+      color: var(--cyan);
+      filter: drop-shadow(0 0 8px var(--cyan));
     }
 
     .logo-text h1 {
-      font-size: 1.2rem;
-      color: var(--primary-color);
+      font-size: 1.3rem;
+      color: var(--cyan);
+      text-shadow: 0 0 10px rgba(0,243,255,0.5);
     }
 
     .logo-text span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      color: #94a3b8;
+      font-weight: 600;
     }
 
     .nav-menu {
       display: flex;
       list-style: none;
-      gap: 1.5rem;
+      gap: 1.8rem;
     }
 
     .nav-menu a {
-      color: var(--text-light);
+      color: var(--text);
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-      font-size: 0.95rem;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      position: relative;
     }
 
     .nav-menu a:hover {
-      color: var(--primary-color);
+      color: var(--cyan);
+      text-shadow: 0 0 8px var(--cyan);
     }
 
-    /* Главный баннер (Hero Section) */
+    /* Hero Section */
     .hero {
-      padding: 5rem 2rem;
-      max-width: 1200px;
+      min-height: 85vh;
+      max-width: 1300px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
+      padding: 3rem 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(255, 107, 0, 0.15);
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
     }
 
     .hero-text h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, #ffffff 30%, var(--cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-text p {
-      font-size: 1.1rem;
-      color: var(--text-muted);
+      color: #94a3b8;
+      font-size: 1.2rem;
       margin-bottom: 2rem;
     }
 
-    .cta-buttons {
+    /* Кнопки в неоновом стиле */
+    .btn-group {
       display: flex;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
-    .btn {
-      padding: 0.8rem 1.8rem;
-      border-radius: 30px;
+    .cyber-btn {
+      padding: 1rem 2rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
       text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+      transition: all 0.3s;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      cursor: pointer;
-      border: none;
     }
 
-    .btn-primary {
-      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-      color: #fff;
-      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+    .cyber-btn-primary {
+      background: var(--cyan);
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+    .cyber-btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
+      transform: translateY(-2px);
     }
 
-    .btn-outline {
-      border: 2px solid var(--primary-color);
-      color: var(--primary-color);
+    .cyber-btn-outline {
       background: transparent;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
     }
 
-    .btn-outline:hover {
-      background: var(--primary-color);
-      color: var(--bg-dark);
+    .cyber-btn-outline:hover {
+      background: rgba(0, 243, 255, 0.15);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
     }
 
-    .hero-card-placeholder {
+    /* Интерактивная карточка-терминал */
+    .terminal-card {
       background: var(--card-bg);
-      border: 2px dashed var(--primary-color);
-      border-radius: 15px;
-      height: 320px;
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .terminal-header {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--text-muted);
-      text-align: center;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .hero-card-placeholder i {
-      font-size: 4rem;
-      color: var(--primary-color);
+      gap: 8px;
       margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Секции общего контейнера */
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .terminal-body {
+      font-family: 'Fira Code', monospace;
+      color: var(--cyan);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Статистика / Счетчик */
+    .stats-grid {
+      max-width: 1300px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    /* Разделы и Карточки */
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
+      max-width: 1300px;
+      margin: 4rem auto;
+      padding: 0 2rem;
     }
 
     .section-title {
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2.5rem;
-      color: var(--primary-color);
-      position: relative;
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      color: #fff;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--accent-color);
-      margin: 10px auto 0;
-      border-radius: 2px;
-    }
+    .section-title span { color: var(--cyan); }
 
-    /* Карточки направлений / разделов */
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
-    .card {
+    .glass-card {
       background: var(--card-bg);
+      border: 1px solid var(--glass-border);
       border-radius: 12px;
       padding: 2rem;
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s, border-color 0.3s;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary-color);
+    .glass-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--cyan);
+      box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
     }
 
-    .card-icon {
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
+    .card-icon-box {
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 243, 255, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
     }
 
-    .card h3 {
-      margin-bottom: 1rem;
-      color: var(--text-light);
+    /* Фоторамки (Заглушки с эффектным стилем под будущие снимки) */
+    .photo-placeholder {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, rgba(0,243,255,0.05), rgba(157,0,255,0.05));
+      border: 2px dashed var(--glass-border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      gap: 10px;
+      transition: all 0.3s;
     }
 
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
+    .photo-placeholder:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
     }
 
-    /* Обьявления и Инновационный блог */
-    .announcement-box {
-      background: linear-gradient(135deg, rgba(255,107,8,0.1), rgba(0,210,255,0.1));
-      border-left: 5px solid var(--accent-color);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-    }
-
-    /* Интерактивный опрос (модуль востребованности) */
-    .poll-container {
+    /* Интерактивный опрос */
+    .poll-box {
       background: var(--card-bg);
-      padding: 2rem;
+      border: 1px solid var(--glass-border);
       border-radius: 12px;
-      max-width: 600px;
+      padding: 2rem;
+      max-width: 700px;
       margin: 0 auto;
-    }
-
-    .poll-option {
-      margin: 1rem 0;
     }
 
     .poll-btn {
       width: 100%;
-      padding: 0.8rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--primary-color);
-      color: var(--text-light);
-      border-radius: 6px;
-      text-align: left;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-size: 1rem;
+      text-align: left;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .poll-btn:hover {
-      background: rgba(0, 210, 255, 0.2);
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.1);
+      padding-left: 1.5rem;
     }
 
-    /* Подвал сайта */
+    /* Подвал */
     footer {
-      background: #060913;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: rgba(3, 5, 12, 0.95);
+      padding: 3rem 2rem;
       text-align: center;
-      color: var(--text-muted);
-      margin-top: 4rem;
+      color: #64748b;
     }
 
-    /* Адаптивность для мобильных */
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .cta-buttons {
-        justify-content: center;
-      }
-      .nav-menu {
-        display: none; /* Можно добавить мобильное гамбургер-меню */
-      }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .btn-group { justify-content: center; }
+      .nav-menu { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ШАПКА И НАВИГАЦИЯ -->
+  <!-- Динамический векторный фон -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ШАПКА -->
   <header>
     <div class="nav-container">
       <a href="#" class="logo">
-        <i class="fa-solid fa-robot"></i>
+        <i class="fa-solid fa-microchip"></i>
         <div class="logo-text">
-          <h1>ROBO-MASTER</h1>
-          <span>Свиренко Владимир Иванович</span>
+          <h1>ROBO-LAB</h1>
+          <span>Свиренко В. И.</span>
         </div>
       </a>
       <ul class="nav-menu">
-        <li><a href="#about"><i class="fa-solid fa-user-tie"></i> О педагоге</a></li>
-        <li><a href="#program"><i class="fa-solid fa-code"></i> Программа</a></li>
-        <li><a href="#achievements"><i class="fa-solid fa-trophy"></i> Достижения</a></li>
-        <li><a href="#parents"><i class="fa-solid fa-users"></i> Родителям</a></li>
-        <li><a href="#contacts"><i class="fa-solid fa-envelope"></i> Контакты</a></li>
+        <li><a href="#about">О педагоге</a></li>
+        <li><a href="#directions">Направления</a></li>
+        <li><a href="#projects">Проекты</a></li>
+        <li><a href="#poll">Опрос</a></li>
+        <li><a href="#gallery">Галерея</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- ГЛАВНЫЙ БАННЕР -->
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-text">
-      <h2>Конструируем будущее своими руками</h2>
-      <p>Добро пожаловать на образовательный портал кружка робототехники. Здесь дети осваивают 3D-моделирование, программирование, микроконтроллеры и создают своих первых интеллектуальных роботов!</p>
-      <div class="cta-buttons">
-        <a href="#contacts" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Записаться в кружок</a>
-        <a href="#program" class="btn btn-outline"><i class="fa-solid fa-book-open"></i> Учебные материалы</a>
+      <div class="badge"><i class="fa-solid fa-bolt"></i> Дополнительное образование</div>
+      <h2>Инженерия. Кодинг. Будущее.</h2>
+      <p>Обучение школьников 3D-проектированию, электронике на базе Arduino и созданию автономных робототехнических систем.</p>
+      <div class="btn-group">
+        <a href="#directions" class="cyber-btn cyber-btn-primary"><i class="fa-solid fa-rocket"></i> Изучить курсы</a>
+        <a href="#gallery" class="cyber-btn cyber-btn-outline"><i class="fa-solid fa-images"></i> Галерея работ</a>
       </div>
     </div>
-    <!-- Место для главного фото (позже вставите баннер) -->
-    <div class="hero-card-placeholder">
-      <i class="fa-solid fa-microchip"></i>
-      <h3>[ Место для фото кружка / роботов ]</h3>
-      <p>Здесь будет размещена главная фотография занятий или командной работы с роботами.</p>
+
+    <!-- Интерактивная карточка с эффектом кода -->
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+        <span style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">robot_status.js</span>
+      </div>
+      <div class="terminal-body">
+        <p><span style="color:var(--orange)">const</span> teacher = <span style="color:#fff">"Свиренко Владимир Иванович"</span>;</p>
+        <p><span style="color:var(--orange)">const</span> status = <span style="color:#fff">"Идёт набор учащихся"</span>;</p>
+        <p><span style="color:var(--orange)">let</span> skills = [<span style="color:#27c93f">"Arduino"</span>, <span style="color:#27c93f">"3D-печать"</span>, <span style="color:#27c93f">"Python"</span>];</p>
+        <br>
+        <p style="color: #64748b;">// Выполнение команды инициализации...</p>
+        <p>> ROBO_LAB.init() <span style="color:var(--cyan)">[OK]</span></p>
+        <p>> System ready for 2026 academic year...</p>
+      </div>
     </div>
   </section>
 
-  <!-- БЛОК ОБЪЯВЛЕНИЙ (Критерий "Востребованность / Модули") -->
-  <div class="container">
-    <div class="announcement-box">
-      <h3><i class="fa-solid fa-bullhorn"></i> Важная информация / Новости</h3>
-      <p>Идет набор в группы первого и второго года обучения! Ознакомьтесь с расписанием занятий и памяткой для родителей в разделе «Родителям».</p>
+  <!-- СЧЕТЧИКИ И СТАТИСТИКА -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">3D</div>
+      <div class="stat-label">Моделирование и печать</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Практические навыки</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">C++ / Py</div>
+      <div class="stat-label">Языки программирования</div>
     </div>
   </div>
 
-  <!-- ОСНОВНЫЕ РАЗДЕЛЫ САЙТА -->
-  <section class="container" id="program">
-    <h2 class="section-title">Чему мы обучаем</h2>
+  <!-- НАПРАВЛЕНИЯ ОБУЧЕНИЯ -->
+  <section class="container" id="directions">
+    <h2 class="section-title">Чему <span>обучаются</span> ребятам</h2>
     <div class="grid-3">
       
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
-        <h3>3D-Моделирование и Печать</h3>
-        <p>Изучаем основы трехмерного проектирования корпусов и деталей для роботов с последующей печатью на 3D-принтере.</p>
+      <div class="glass-card">
+        <div class="card-icon-box"><i class="fa-solid fa-cube"></i></div>
+        <h3>3D-Проектирование</h3>
+        <p>Создание трехмерных моделей деталей и корпусов роботов в CAD-системах с последующей печатью на 3D-принтерах.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
-        <h3>Схемотехника и Arduino</h3>
-        <p>Осваиваем электронные компоненты, датчики, сервоприводы и работу с микроконтроллерами Arduino и STEM-конструкторами.</p>
+      <div class="glass-card">
+        <div class="card-icon-box" style="color: var(--orange); background: rgba(ff, 107, 0, 0.1);"><i class="fa-solid fa-cpu"></i></div>
+        <h3>Микроконтроллеры</h3>
+        <p>Сборка электронных схем, подключение датчиков движения, ультразвука и управления сервоприводами.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
-        <h3>Программирование</h3>
-        <p>От блочного программирования (Scratch) до написания алгоритмов управления на языках C++ и Python.</p>
+      <div class="glass-card">
+        <div class="card-icon-box" style="color: var(--purple); background: rgba(157, 0, 255, 0.1);"><i class="fa-solid fa-code"></i></div>
+        <h3>Алгоритмы и Код</h3>
+        <p>Разработка логики поведения роботов: от простых алгоритмов движения по линии до обхода препятствий.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- РАЗДЕЛ ДЛЯ КОНКУРСНЫХ МОДУЛЕЙ (Опрос / Обратная связь) -->
-  <section class="container">
-    <h2 class="section-title">Интерактивный опрос</h2>
-    <div class="poll-container">
-      <p style="margin-bottom: 1rem; text-align: center;"><strong>Какое направление робототехники вам наиболее интересно?</strong></p>
-      <div class="poll-option">
-        <button class="poll-btn" onclick="vote('3D')"><i class="fa-solid fa-cube"></i> 3D-моделирование и прототипирование</button>
-      </div>
-      <div class="poll-option">
-        <button class="poll-btn" onclick="vote('Robots')"><i class="fa-solid fa-robot"></i> Соревнования автономных роботов (Сумо, Кегельринг)</button>
-      </div>
-      <div class="poll-option">
-        <button class="poll-btn" onclick="vote('IoT')"><i class="fa-solid fa-wifi"></i> Умный дом и интернет вещей (IoT)</button>
-      </div>
-      <p id="poll-result" style="margin-top:1rem; color: var(--primary-color); text-align: center; font-weight: bold;"></p>
+  <!-- ОПРОС ДЛЯ РОДИТЕЛЕЙ И УЧЕНИКОВ (Модуль "Востребованность") -->
+  <section class="container" id="poll">
+    <h2 class="section-title">Интерактивный <span>опрос</span></h2>
+    <div class="poll-box">
+      <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Какой проект вы бы хотели реализовать в этом учебном году?</h3>
+      <button class="poll-btn" onclick="registerVote('Умный дом')">
+        <i class="fa-solid fa-house-signal" style="color: var(--cyan)"></i> Система «Умный дом» на Arduino
+      </button>
+      <button class="poll-btn" onclick="registerVote('Автономный робот')">
+        <i class="fa-solid fa-robot" style="color: var(--orange)"></i> Робот для соревнований по маневрированию
+      </button>
+      <button class="poll-btn" onclick="registerVote('3D-модель')">
+        <i class="fa-solid fa-print" style="color: var(--purple)"></i> Собственная 3D-модель механического манипулятора
+      </button>
+      <div id="vote-message" style="margin-top: 1rem; color: var(--cyan); font-weight: bold; text-align: center;"></div>
     </div>
   </section>
 
-  <!-- ПУСТЫЕ СЕКЦИИ ДЛЯ БУДУЩИХ ФОТО -->
+  <!-- ГАЛЕРЕЯ МЕСТ ПОД ФОТО -->
   <section class="container" id="gallery">
-    <h2 class="section-title">Галерея кружка</h2>
+    <h2 class="section-title">Галерея <span>кружка</span></h2>
     <div class="grid-3">
-      <div class="hero-card-placeholder" style="height: 200px;">
-        <i class="fa-solid fa-image"></i>
-        <p>[ Место под Фото 1: Наши занятия ]</p>
+      <div class="photo-placeholder">
+        <i class="fa-solid fa-camera fa-2x"></i>
+        <span>[ Занятия и сборка схем ]</span>
       </div>
-      <div class="hero-card-placeholder" style="height: 200px;">
-        <i class="fa-solid fa-image"></i>
-        <p>[ Место под Фото 2: Проекты ребят ]</p>
+      <div class="photo-placeholder">
+        <i class="fa-solid fa-print fa-2x"></i>
+        <span>[ Работа 3D-принтера ]</span>
       </div>
-      <div class="hero-card-placeholder" style="height: 200px;">
-        <i class="fa-solid fa-image"></i>
-        <p>[ Место под Фото 3: Соревнования ]</p>
+      <div class="photo-placeholder">
+        <i class="fa-solid fa-trophy fa-2x"></i>
+        <span>[ Готовые роботы учеников ]</span>
       </div>
     </div>
   </section>
 
-  <!-- ПОДВАЛ (FOOTER) -->
-  <footer id="contacts">
-    <p><strong>Педагог дополнительного образования:</strong> Свиренко Владимир Иванович</p>
-    <p>Образовательный сайт кружка «Робототехника» &copy; 2026. Костанайская область.</p>
+  <!-- ПОДВАЛ -->
+  <footer>
+    <p><strong>Свиренко Владимир Иванович</strong> — Педагог дополнительного образования</p>
+    <p style="margin-top: 5px; font-size: 0.85rem;">Персональный образовательный сайт-блог | Костанайская область | 2026</p>
   </footer>
 
+  <!-- Скрипт интерактивного фона и голосования -->
   <script>
-    function vote(option) {
-      document.getElementById('poll-result').innerText = 'Спасибо за ваш голос! Ваш выбор учтен.';
+    // Анимация фона "Частицы и связи"
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#00f3ff';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 243, 255, ${1 - dist / 120})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Голосование
+    function registerVote(option) {
+      document.getElementById('vote-message').innerHTML = '<i class="fa-solid fa-check-circle"></i> Голос за "' + option + '" учтён! Спасибо за участие.';
     }
   </script>
 </body>
