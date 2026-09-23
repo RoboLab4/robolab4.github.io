@@ -1,36 +1,427 @@
-<!-- СЕКЦИЯ: НАГРАДЫ И ДОСТИЖЕНИЯ УЧЕНИКОВ -->
-<div class="info-section">
-  <h2 class="section-h2"><i class="fa-solid fa-user-graduate"></i> Достижения учащихся (Воспитанников кружка)</h2>
-  <p style="color: #94a3b8; margin-bottom: 1.5rem;">Результаты участия воспитанников в городских, областных и республиканских соревнованиях по робототехнике.</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О педагоге | Свиренко В.И. | ROBO-LAB</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <div class="awards-list">
-    
-    <!-- Карточка 1 -->
-    <div class="award-item" style="border-left-color: var(--cyan);">
-      <div class="award-info">
-        <h4><i class="fa-solid fa-medal" style="color:var(--cyan); margin-right:8px;"></i> [ Название конкурса / Олимпиады ]</h4>
-        <p><strong>Победители / Призеры:</strong> ФИО учеников, класс (например, 1 место в категории «Сумо роботов»)</p>
-      </div>
-      <div class="award-badge">Диплом I степени</div>
+  <style>
+    :root {
+      --cyan: #00f3ff;
+      --orange: #ff6b00;
+      --purple: #9d00ff;
+      --bg-dark: #050811;
+      --card-bg: rgba(13, 22, 41, 0.85);
+      --glass-border: rgba(0, 243, 255, 0.25);
+      --text: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    header {
+      background: rgba(5, 8, 17, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-btn {
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    /* СЕТКА СТРАНИЦЫ */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ЛЕВАЯ КАРТОЧКА */
+    .profile-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: sticky;
+      top: 100px;
+    }
+
+    .photo-wrapper {
+      width: 100%;
+      height: 320px;
+      border: 2px dashed var(--cyan);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, rgba(0,243,255,0.05), rgba(157,0,255,0.05));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .photo-wrapper:hover {
+      border-color: var(--orange);
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.25);
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .profile-card .role {
+      color: var(--orange);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-list-mini {
+      text-align: left;
+      font-size: 0.95rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .info-list-mini div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-list-mini i { color: var(--cyan); width: 18px; }
+
+    /* ПРАВАЯ ЧАСТЬ */
+    .quote-box {
+      background: linear-gradient(135deg, rgba(0,243,255,0.08), rgba(255,107,0,0.08));
+      border-left: 4px solid var(--cyan);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .quote-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* БАННЕР-ССЫЛКА НА ДОСТИЖЕНИЯ ДЕТЕЙ */
+    .students-cta-banner {
+      background: linear-gradient(135deg, rgba(255,107,0,0.15), rgba(157,0,255,0.15));
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .students-cta-banner:hover {
+      box-shadow: 0 0 25px rgba(255, 107, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .cta-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-info p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .cta-btn {
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 8px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+    }
+
+    .cta-btn:hover {
+      background: #ff8533;
+      transform: scale(1.03);
+    }
+
+    /* СЕКЦИИ И КАРТОЧКИ НАГРАД */
+    .info-section {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .section-h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyan);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.8rem;
+    }
+
+    .awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .award-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
+      border-left: 4px solid var(--cyan);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .award-item:hover {
+      background: rgba(0, 243, 255, 0.05);
+      border-color: var(--cyan);
+      transform: translateX(5px);
+    }
+
+    .award-info h4 {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .award-info p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .award-badge {
+      background: rgba(0, 243, 255, 0.1);
+      color: var(--cyan);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      border: 1px solid var(--cyan);
+    }
+
+    footer {
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 850px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-card { position: static; }
+      .students-cta-banner { flex-direction: column; text-align: center; }
+      .award-item { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-btn">
+        <i class="fa-solid fa-arrow-left"></i> На главную
+      </a>
+      <span style="font-family: 'Orbitron'; color: #fff; font-weight:700;">ROBO-LAB / ПОРТФОЛИО</span>
     </div>
+  </header>
 
-    <!-- Карточка 2 -->
-    <div class="award-item" style="border-left-color: var(--cyan);">
-      <div class="award-info">
-        <h4><i class="fa-solid fa-trophy" style="color:var(--cyan); margin-right:8px;"></i> Областные соревнования по робототехнике «Жинаңыз және бағдарламалаңыз»[cite: 2]</h4>
-        <p><strong>Воспитанники кружка:</strong> Командное первенство по сборке и программированию[cite: 2]</p>
+  <div class="container">
+    <div class="profile-grid">
+      
+      <!-- ЛЕВАЯ КОЛОНКА: Визитка и фото -->
+      <div class="profile-card">
+        
+        <!-- БЛОК ПОД ФОТО ПЕДАГОГА -->
+        <div class="photo-wrapper">
+          <!-- Замените строчку ниже на путь к вашей фотографии: -->
+          <!-- <img src="my-photo.jpg" alt="Свиренко Владимир Иванович"> -->
+          <i class="fa-solid fa-user-gear fa-4x" style="color: var(--cyan); margin-bottom: 12px;"></i>
+          <span style="font-weight: 700; color: #fff;">ФОТО ПЕДАГОГА</span>
+          <span style="font-size: 0.8rem; color: #94a3b8; padding: 0 10px; margin-top: 4px;">&lt;img src="photo.jpg"&gt;</span>
+        </div>
+
+        <h2>Свиренко<br>Владимир Иванович</h2>
+        <div class="role">Учитель информатики и робототехники</div>
+        
+        <div class="info-list-mini">
+          <div><i class="fa-solid fa-location-dot"></i> <span>Костанайская обл., г. Рудный</span></div>
+          <div><i class="fa-solid fa-school"></i> <span>Школа-лицей №4</span></div>
+          <div><i class="fa-solid fa-microchip"></i> <span>Руководитель кружка «ROBO-LAB»</span></div>
+        </div>
       </div>
-      <div class="award-badge">Победители | 2025[cite: 2]</div>
-    </div>
 
-    <!-- Карточка 3 -->
-    <div class="award-item" style="border-left-color: var(--cyan);">
-      <div class="award-info">
-        <h4><i class="fa-solid fa-award" style="color:var(--cyan); margin-right:8px;"></i> Открытый фестиваль «R:ED FEST»[cite: 2]</h4>
-        <p><strong>Участники соревновательной секции:</strong> Успешное выступление в категории программирования автономных роботов[cite: 2]</p>
+      <!-- ПРАВАЯ КОЛОНКА -->
+      <div>
+        
+        <!-- ВДОХНОВЛЯЮЩАЯ ЦИТАТА -->
+        <div class="quote-box">
+          <p class="quote-text">
+            <i class="fa-solid fa-quote-left" style="color: var(--cyan); margin-right: 8px;"></i>
+            Робототехника — это больше, чем просто сборка схем. Это удивительный мир, где оживают идеи и формируется инженерное мышление! Моя главная цель — не просто научить детей коду, а вдохновить их верить в свои силы, экспериментировать и создавать технологии будущего своими руками.
+          </p>
+        </div>
+
+        <!-- ЯРКИЙ БАННЕР-ССЫЛКА НА ДОСТИЖЕНИЯ УЧЕНИКОВ -->
+        <div class="students-cta-banner">
+          <div class="cta-info">
+            <h3><i class="fa-solid fa-user-graduate" style="color: var(--orange);"></i> Достижения воспитанников</h3>
+            <p>Ознакомьтесь с призовыми местами и грамотами учеников на олимпиадах и фестивалях по робототехнике.</p>
+          </div>
+          <a href="students.html" class="cta-btn">
+            Смотреть результаты <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- ЛИЧНЫЕ НАГРАДЫ И СЕРТИФИКАТЫ ИЗ ДОКУМЕНТА -->
+        <div class="info-section">
+          <h2 class="section-h2"><i class="fa-solid fa-trophy"></i> Личные награды и достижения</h2>
+          
+          <div class="awards-list">
+            
+            <div class="award-item">
+              <div class="award-info">
+                <h4>Благодарственное письмо за подготовку победителей</h4>
+                <p>Областные соревнования по робототехнике и программированию «Жинаңыз және бағдарламалаңыз»[cite: 2]</p>
+              </div>
+              <div class="award-badge">2025 | Костанай[cite: 2]</div>
+            </div>
+
+            <div class="award-item">
+              <div class="award-info">
+                <h4>Благодарственное письмо наставнику[cite: 2]</h4>
+                <p>За подготовку участников Открытого международного фестиваля робототехники и программирования «R:ED FEST 2024»[cite: 2]</p>
+              </div>
+              <div class="award-badge">2024 | Костанай[cite: 2]</div>
+            </div>
+
+            <div class="award-item">
+              <div class="award-info">
+                <h4>Сертификат участника областного конкурса[cite: 2]</h4>
+                <p>Областной конкурс среди педагогов организаций среднего образования «ІТ МҰҒАЛІМІ 2024»[cite: 2]</p>
+              </div>
+              <div class="award-badge">2024 | Костанай[cite: 2]</div>
+            </div>
+
+            <div class="award-item">
+              <div class="award-info">
+                <h4>Грамота за активную жизненную позицию[cite: 2]</h4>
+                <p>За участие в жизни педагогического коллектива и школы (КГУ «Школа-лицей №4» г. Рудный)[cite: 2]</p>
+              </div>
+              <div class="award-badge">2024 | Рудный[cite: 2]</div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
-      <div class="award-badge">Участники | 2024[cite: 2]</div>
-    </div>
 
+    </div>
   </div>
-</div>
+
+  <footer>
+    <p>Персональный сайт-блог педагога дополнительного образования Свиренко В. И. &copy; 2026</p>
+  </footer>
+
+</body>
+</html>
