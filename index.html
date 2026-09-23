@@ -100,6 +100,24 @@
       font-weight: 600;
     }
 
+    /* Кнопка Мобильного Меню (Гамбургер) */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--cyan);
+      font-size: 1.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(0, 243, 255, 0.1);
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    }
+
     .nav-menu {
       display: flex;
       list-style: none;
@@ -165,6 +183,7 @@
     .btn-group {
       display: flex;
       gap: 1.2rem;
+      flex-wrap: wrap;
     }
 
     .cyber-btn {
@@ -215,6 +234,7 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
       position: relative;
+      scroll-margin-top: 90px;
     }
 
     .terminal-header {
@@ -223,6 +243,7 @@
       margin-bottom: 1rem;
       padding-bottom: 0.8rem;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      align-items: center;
     }
 
     .dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -235,6 +256,7 @@
       color: var(--cyan);
       font-size: 0.95rem;
       line-height: 1.8;
+      word-break: break-word;
     }
 
     /* Статистика / Счетчик */
@@ -271,6 +293,7 @@
       max-width: 1300px;
       margin: 4rem auto;
       padding: 0 2rem;
+      scroll-margin-top: 90px;
     }
 
     .section-title {
@@ -284,7 +307,7 @@
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
 
@@ -380,10 +403,53 @@
       color: #64748b;
     }
 
+    /* Мобильная адаптивность */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .btn-group { justify-content: center; }
-      .nav-menu { display: none; }
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 8, 17, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--glass-border);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        display: none; /* Скрыто по умолчанию */
+      }
+
+      .nav-menu.active {
+        display: flex; /* Открывается по клику */
+      }
+
+      .nav-menu li {
+        width: 100%;
+      }
+
+      .nav-menu a {
+        display: block;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .hero { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        padding: 2rem 1.5rem;
+      }
+
+      .hero-text h2 {
+        font-size: 2.2rem;
+      }
+
+      .btn-group { 
+        justify-content: center; 
+      }
     }
   </style>
 </head>
@@ -402,10 +468,15 @@
           <span>Свиренко В. И.</span>
         </div>
       </a>
-      <ul class="nav-menu">
+      
+      <!-- Кнопка бургер-меню для смартфонов -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="#about">О педагоге</a></li>
         <li><a href="#directions">Направления</a></li>
-        <li><a href="#projects">Проекты</a></li>
         <li><a href="#poll">Опрос</a></li>
         <li><a href="#gallery">Галерея</a></li>
       </ul>
@@ -424,13 +495,13 @@
       </div>
     </div>
 
-    <!-- Интерактивная карточка с эффектом кода -->
-    <div class="terminal-card">
+    <!-- Интерактивная карточка с информацией о педагоге (anchor #about) -->
+    <div class="terminal-card" id="about">
       <div class="terminal-header">
         <div class="dot dot-red"></div>
         <div class="dot dot-yellow"></div>
         <div class="dot dot-green"></div>
-        <span style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">robot_status.js</span>
+        <span style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">teacher_profile.js</span>
       </div>
       <div class="terminal-body">
         <p><span style="color:var(--orange)">const</span> teacher = <span style="color:#fff">"Свиренко Владимир Иванович"</span>;</p>
@@ -462,7 +533,7 @@
 
   <!-- НАПРАВЛЕНИЯ ОБУЧЕНИЯ -->
   <section class="container" id="directions">
-    <h2 class="section-title">Чему <span>обучаются</span> ребятам</h2>
+    <h2 class="section-title">Чему <span>обучаются</span> ребята</h2>
     <div class="grid-3">
       
       <div class="glass-card">
@@ -472,7 +543,7 @@
       </div>
 
       <div class="glass-card">
-        <div class="card-icon-box" style="color: var(--orange); background: rgba(ff, 107, 0, 0.1);"><i class="fa-solid fa-cpu"></i></div>
+        <div class="card-icon-box" style="color: var(--orange); background: rgba(255, 107, 0, 0.1);"><i class="fa-solid fa-cpu"></i></div>
         <h3>Микроконтроллеры</h3>
         <p>Сборка электронных схем, подключение датчиков движения, ультразвука и управления сервоприводами.</p>
       </div>
@@ -486,7 +557,7 @@
     </div>
   </section>
 
-  <!-- ОПРОС ДЛЯ РОДИТЕЛЕЙ И УЧЕНИКОВ (Модуль "Востребованность") -->
+  <!-- ОПРОС ДЛЯ РОДИТЕЛЕЙ И УЧЕНИКОВ -->
   <section class="container" id="poll">
     <h2 class="section-title">Интерактивный <span>опрос</span></h2>
     <div class="poll-box">
@@ -529,8 +600,36 @@
     <p style="margin-top: 5px; font-size: 0.85rem;">Персональный образовательный сайт-блог | Костанайская область | 2026</p>
   </footer>
 
-  <!-- Скрипт интерактивного фона и голосования -->
+  <!-- Скрипты: логика мобильного меню, частиц и голосования -->
   <script>
+    // Управление мобильным меню
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Закрывать меню при клике на любой пункт
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        }
+      });
+    });
+
     // Анимация фона "Частицы и связи"
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
