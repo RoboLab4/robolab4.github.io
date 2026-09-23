@@ -1,323 +1,149 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ROBO-LAB | Портфолио педагога</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<header>
+  <div class="nav-container">
+    <!-- Логотип / Название -->
+    <a href="index.html" class="brand-title">ROBO-LAB</a>
 
-  <style>
-    :root {
-      --cyan: #00f3ff;
-      --orange: #ff6b00;
-      --purple: #9d00ff;
-      --green: #00ff88;
-      --bg-dark: #050811;
-      --card-bg: rgba(13, 22, 41, 0.9);
-      --glass-border: rgba(0, 243, 255, 0.25);
-      --text: #e2e8f0;
-    }
+    <!-- Кнопка гамбургера (видна только на телефонах) -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">
+      <i class="fa-solid fa-bars" id="menuIcon"></i>
+    </button>
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html {
-      scroll-behavior: smooth;
-    }
+    <!-- Навигационные ссылки -->
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about" class="nav-link">О педагоге</a>
+      <a href="index.html#directions" class="nav-link">Направления</a>
+      <a href="projects.html" class="nav-link">Проекты</a>
+      <a href="gallery.html" class="nav-link">Галерея</a>
+      <a href="results.html" class="nav-link">Результаты</a>
+    </nav>
+  </div>
+</header>
 
-    body {
-      font-family: 'Rajdhani', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 1.1rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+<style>
+  /* --- Основные стили Шапки --- */
+  header {
+    background: rgba(5, 8, 17, 0.95);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.25);
+    padding: 1rem 2rem;
+  }
 
-    /* --- Шапка и Меню --- */
-    header {
-      background: rgba(5, 8, 17, 0.95);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 2rem;
-    }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-    }
+  .brand-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
 
-    .brand-title {
-      font-family: 'Orbitron', sans-serif;
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: 1px;
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: #00f3ff;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(0, 243, 255, 0.15);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+  }
+
+  /* Иконка-гамбургер (скрыта на больших экранах) */
+  .mobile-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    color: #00f3ff;
+    font-size: 1.5rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  /* --- Адаптив для смартфонов (до 768px) --- */
+  @media (max-width: 768px) {
+    .mobile-toggle {
+      display: block; /* Показываем кнопку меню */
     }
 
     .nav-links {
-      display: flex;
+      display: none; /* Скрываем стандартное меню */
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 8, 17, 0.98);
+      backdrop-filter: blur(15px);
+      flex-direction: column;
+      padding: 1.5rem;
       gap: 1rem;
-      align-items: center;
+      border-bottom: 1px solid rgba(0, 243, 255, 0.25);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Класс, который добавляется скриптом при клике */
+    .nav-links.active {
+      display: flex;
     }
 
     .nav-link {
-      color: var(--cyan);
-      text-decoration: none;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-link:hover {
-      background: rgba(0, 243, 255, 0.15);
-      color: #fff;
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-    }
-
-    .mobile-toggle {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--cyan);
-      font-size: 1.5rem;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    /* --- Основной контент --- */
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-      flex: 1;
-    }
-
-    .hero-section {
+      width: 100%;
       text-align: center;
-      padding: 3rem 1rem;
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      margin-bottom: 3rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      font-size: 1.1rem;
+      padding: 10px 0;
     }
+  }
+</style>
 
-    .hero-section h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      color: #fff;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
+<!-- Скрипт переключения мобильного меню -->
+<script>
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+  const menuIcon = document.getElementById('menuIcon');
 
-    .hero-section p {
-      color: var(--cyan);
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      color: #fff;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid var(--cyan);
-      padding-left: 10px;
-    }
-
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: all 0.3s;
-    }
-
-    .card:hover {
-      border-color: var(--cyan);
-      transform: translateY(-4px);
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-    }
-
-    .card i {
-      color: var(--cyan);
-      margin-bottom: 1rem;
-    }
-
-    .card h3 {
-      font-family: 'Orbitron', sans-serif;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--glass-border);
-      text-align: center;
-      padding: 2rem;
-      color: #64748b;
-      margin-top: 4rem;
-      background: rgba(5, 8, 17, 0.9);
-    }
-
-    /* --- Мобильная адаптация --- */
-    @media (max-width: 768px) {
-      .mobile-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(5, 8, 17, 0.98);
-        backdrop-filter: blur(15px);
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 1rem;
-        border-bottom: 1px solid var(--glass-border);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-link {
-        width: 100%;
-        text-align: center;
-        font-size: 1.1rem;
-        padding: 10px 0;
-      }
-
-      .hero-section h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="nav-container">
-      <a href="index.html" class="brand-title">ROBO-LAB</a>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">
-        <i class="fa-solid fa-bars" id="menuIcon"></i>
-      </button>
-
-      <nav class="nav-links" id="navLinks">
-        <a href="#about" class="nav-link">О педагоге</a>
-        <a href="#directions" class="nav-link">Направления</a>
-        <a href="projects.html" class="nav-link">Проекты</a>
-        <a href="gallery.html" class="nav-link">Галерея</a>
-        <a href="results.html" class="nav-link">Результаты</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="container">
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
     
-    <!-- Главный баннер -->
-    <section class="hero-section">
-      <h1>Лаборатория робототехники и программирования</h1>
-      <p>Персональный сайт-портфолио педагога дополнительного образования Свиренко В. И.</p>
-    </section>
+    // Меняем иконку с "гамбургера" на "крестик" и обратно
+    if (navLinks.classList.contains('active')) {
+      menuIcon.classList.remove('fa-bars');
+      menuIcon.classList.add('fa-xmark');
+    } else {
+      menuIcon.classList.remove('fa-xmark');
+      menuIcon.classList.add('fa-bars');
+    }
+  });
 
-    <!-- О педагоге -->
-    <section id="about" style="margin-bottom: 3rem;">
-      <h2 class="section-title">О педагоге</h2>
-      <div class="card">
-        <p>Приветствую! Я педагог дополнительного образования по робототехнике, программированию и информационным технологиям. Обучаю школьников конструированию, созданию алгоритмов, подготовке проектов к областным и республиканским соревнованиям.</p>
-      </div>
-    </section>
-
-    <!-- Направления -->
-    <section id="directions">
-      <h2 class="section-title">Направления работы</h2>
-      <div class="grid-cards">
-        
-        <div class="card">
-          <i class="fa-solid fa-robot fa-2x"></i>
-          <h3>Робототехника</h3>
-          <p>Сборка и программирование роботов для спортивных категорий («Движение по линии», «Жинаңыз және бағдарламалаңыз»).</p>
-        </div>
-
-        <div class="card">
-          <i class="fa-solid fa-code fa-2x"></i>
-          <h3>Программирование</h3>
-          <p>Изучение базовых алгоритмов, основанных на логике, блок-схемах и прикладных языках.</p>
-        </div>
-
-        <div class="card">
-          <i class="fa-solid fa-lightbulb fa-2x"></i>
-          <h3>Проектная деятельность</h3>
-          <p>Разработка экологических, исследовательских и инженеринговых проектов для конкурсов «ProEco», «Зерде» и STEM-фестивалей.</p>
-        </div>
-
-      </div>
-    </section>
-
-  </div>
-
-  <footer>
-    <p>Персональный сайт-блог педагога дополнительного образования Свиренко В. И. &copy; 2026</p>
-  </footer>
-
-  <script>
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navLinks = document.getElementById('navLinks');
-    const menuIcon = document.getElementById('menuIcon');
-
-    // Открытие / закрытие мобильного меню
-    mobileToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      
-      if (navLinks.classList.contains('active')) {
-        menuIcon.classList.remove('fa-bars');
-        menuIcon.classList.add('fa-xmark');
-      } else {
-        menuIcon.classList.remove('fa-xmark');
-        menuIcon.classList.add('fa-bars');
-      }
+  // Автоматически закрывать меню при клике на любую ссылку
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuIcon.classList.remove('fa-xmark');
+      menuIcon.classList.add('fa-bars');
     });
-
-    // Закрываем меню при клике на любую ссылку
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuIcon.classList.remove('fa-xmark');
-        menuIcon.classList.add('fa-bars');
-      });
-    });
-  </script>
-
-</body>
-</html>
+  });
+</script>
