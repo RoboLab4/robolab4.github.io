@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кружок Робототехники | Свиренко В.И. | Персональный сайт педагога</title>
+  <!-- Шрифты Google Fonts и иконки FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #00d2ff;
+      --secondary-color: #0072ff;
+      --accent-color: #ff6b08;
+      --bg-dark: #0a0f1d;
+      --card-bg: #131b2e;
+      --text-light: #ecf0f1;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .brand-logo {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Шапка сайта */
+    header {
+      background: rgba(19, 27, 46, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid var(--primary-color);
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.15);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-light);
+    }
+
+    .logo i {
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+
+    .logo-text h1 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-menu a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-menu a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Главный баннер (Hero Section) */
+    .hero {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-color);
+      color: var(--bg-dark);
+    }
+
+    .hero-card-placeholder {
+      background: var(--card-bg);
+      border: 2px dashed var(--primary-color);
+      border-radius: 15px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .hero-card-placeholder i {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* Секции общего контейнера */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      color: var(--primary-color);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Карточки направлений / разделов */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Обьявления и Инновационный блог */
+    .announcement-box {
+      background: linear-gradient(135deg, rgba(255,107,8,0.1), rgba(0,210,255,0.1));
+      border-left: 5px solid var(--accent-color);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    /* Интерактивный опрос (модуль востребованности) */
+    .poll-container {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .poll-option {
+      margin: 1rem 0;
+    }
+
+    .poll-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--primary-color);
+      color: var(--text-light);
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .poll-btn:hover {
+      background: rgba(0, 210, 255, 0.2);
+    }
+
+    /* Подвал сайта */
+    footer {
+      background: #060913;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 4rem;
+    }
+
+    /* Адаптивность для мобильных */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cta-buttons {
+        justify-content: center;
+      }
+      .nav-menu {
+        display: none; /* Можно добавить мобильное гамбургер-меню */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ШАПКА И НАВИГАЦИЯ -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-robot"></i>
+        <div class="logo-text">
+          <h1>ROBO-MASTER</h1>
+          <span>Свиренко Владимир Иванович</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#about"><i class="fa-solid fa-user-tie"></i> О педагоге</a></li>
+        <li><a href="#program"><i class="fa-solid fa-code"></i> Программа</a></li>
+        <li><a href="#achievements"><i class="fa-solid fa-trophy"></i> Достижения</a></li>
+        <li><a href="#parents"><i class="fa-solid fa-users"></i> Родителям</a></li>
+        <li><a href="#contacts"><i class="fa-solid fa-envelope"></i> Контакты</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ГЛАВНЫЙ БАННЕР -->
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Конструируем будущее своими руками</h2>
+      <p>Добро пожаловать на образовательный портал кружка робототехники. Здесь дети осваивают 3D-моделирование, программирование, микроконтроллеры и создают своих первых интеллектуальных роботов!</p>
+      <div class="cta-buttons">
+        <a href="#contacts" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Записаться в кружок</a>
+        <a href="#program" class="btn btn-outline"><i class="fa-solid fa-book-open"></i> Учебные материалы</a>
+      </div>
+    </div>
+    <!-- Место для главного фото (позже вставите баннер) -->
+    <div class="hero-card-placeholder">
+      <i class="fa-solid fa-microchip"></i>
+      <h3>[ Место для фото кружка / роботов ]</h3>
+      <p>Здесь будет размещена главная фотография занятий или командной работы с роботами.</p>
+    </div>
+  </section>
+
+  <!-- БЛОК ОБЪЯВЛЕНИЙ (Критерий "Востребованность / Модули") -->
+  <div class="container">
+    <div class="announcement-box">
+      <h3><i class="fa-solid fa-bullhorn"></i> Важная информация / Новости</h3>
+      <p>Идет набор в группы первого и второго года обучения! Ознакомьтесь с расписанием занятий и памяткой для родителей в разделе «Родителям».</p>
+    </div>
+  </div>
+
+  <!-- ОСНОВНЫЕ РАЗДЕЛЫ САЙТА -->
+  <section class="container" id="program">
+    <h2 class="section-title">Чему мы обучаем</h2>
+    <div class="grid-3">
+      
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
+        <h3>3D-Моделирование и Печать</h3>
+        <p>Изучаем основы трехмерного проектирования корпусов и деталей для роботов с последующей печатью на 3D-принтере.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
+        <h3>Схемотехника и Arduino</h3>
+        <p>Осваиваем электронные компоненты, датчики, сервоприводы и работу с микроконтроллерами Arduino и STEM-конструкторами.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Программирование</h3>
+        <p>От блочного программирования (Scratch) до написания алгоритмов управления на языках C++ и Python.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- РАЗДЕЛ ДЛЯ КОНКУРСНЫХ МОДУЛЕЙ (Опрос / Обратная связь) -->
+  <section class="container">
+    <h2 class="section-title">Интерактивный опрос</h2>
+    <div class="poll-container">
+      <p style="margin-bottom: 1rem; text-align: center;"><strong>Какое направление робототехники вам наиболее интересно?</strong></p>
+      <div class="poll-option">
+        <button class="poll-btn" onclick="vote('3D')"><i class="fa-solid fa-cube"></i> 3D-моделирование и прототипирование</button>
+      </div>
+      <div class="poll-option">
+        <button class="poll-btn" onclick="vote('Robots')"><i class="fa-solid fa-robot"></i> Соревнования автономных роботов (Сумо, Кегельринг)</button>
+      </div>
+      <div class="poll-option">
+        <button class="poll-btn" onclick="vote('IoT')"><i class="fa-solid fa-wifi"></i> Умный дом и интернет вещей (IoT)</button>
+      </div>
+      <p id="poll-result" style="margin-top:1rem; color: var(--primary-color); text-align: center; font-weight: bold;"></p>
+    </div>
+  </section>
+
+  <!-- ПУСТЫЕ СЕКЦИИ ДЛЯ БУДУЩИХ ФОТО -->
+  <section class="container" id="gallery">
+    <h2 class="section-title">Галерея кружка</h2>
+    <div class="grid-3">
+      <div class="hero-card-placeholder" style="height: 200px;">
+        <i class="fa-solid fa-image"></i>
+        <p>[ Место под Фото 1: Наши занятия ]</p>
+      </div>
+      <div class="hero-card-placeholder" style="height: 200px;">
+        <i class="fa-solid fa-image"></i>
+        <p>[ Место под Фото 2: Проекты ребят ]</p>
+      </div>
+      <div class="hero-card-placeholder" style="height: 200px;">
+        <i class="fa-solid fa-image"></i>
+        <p>[ Место под Фото 3: Соревнования ]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОДВАЛ (FOOTER) -->
+  <footer id="contacts">
+    <p><strong>Педагог дополнительного образования:</strong> Свиренко Владимир Иванович</p>
+    <p>Образовательный сайт кружка «Робототехника» &copy; 2026. Костанайская область.</p>
+  </footer>
+
+  <script>
+    function vote(option) {
+      document.getElementById('poll-result').innerText = 'Спасибо за ваш голос! Ваш выбор учтен.';
+    }
+  </script>
+</body>
+</html>
