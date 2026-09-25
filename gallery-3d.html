@@ -216,36 +216,59 @@
       box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
     }
 
-    /* Терминал параметров курса */
-    .terminal-card {
+    /* Кибер-контейнер для фотографии printer3d.jpeg */
+    .printer-image-wrapper {
+      position: relative;
       background: var(--card-bg);
       border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      padding: 12px;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 243, 255, 0.15);
       backdrop-filter: blur(10px);
+      clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
+      transition: all 0.4s ease;
     }
 
-    .terminal-header {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 1rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      align-items: center;
+    .printer-image-wrapper:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 20px 45px rgba(0, 243, 255, 0.3);
+      transform: translateY(-5px);
     }
 
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-red { background: #ff5f56; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #27c93f; }
+    .printer-img {
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
 
-    .terminal-body {
+    /* Плашка поверх фото */
+    .printer-overlay-badge {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      background: rgba(5, 8, 17, 0.85);
+      border: 1px solid var(--cyan);
+      padding: 8px 16px;
+      border-radius: 8px;
       font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
       color: var(--cyan);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      word-break: break-word;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #27c93f;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #27c93f;
     }
 
     /* Секции */
@@ -441,7 +464,7 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION С ФОТОГРАФИЕЙ ПРИНТЕРА -->
   <section class="hero">
     <div class="hero-text">
       <div class="badge"><i class="fa-solid fa-cube"></i> Практический курс</div>
@@ -453,23 +476,12 @@
       </div>
     </div>
 
-    <!-- Терминал спецификаций курса -->
-    <div class="terminal-card">
-      <div class="terminal-header">
-        <div class="dot dot-red"></div>
-        <div class="dot dot-yellow"></div>
-        <div class="dot dot-green"></div>
-        <span style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">course_config.json</span>
-      </div>
-      <div class="terminal-body">
-        <p><span style="color:var(--orange)">"course_name"</span>: <span style="color:#fff">"3D Modeling & Printing"</span>,</p>
-        <p><span style="color:var(--orange)">"target_age"</span>: <span style="color:#fff">"5-11 классы"</span>,</p>
-        <p><span style="color:var(--orange)">"cad_software"</span>: [<span style="color:#27c93f">"Tinkercad"</span>, <span style="color:#27c93f">"FreeCAD / Fusion"</span>],</p>
-        <p><span style="color:var(--orange)">"hardware"</span>: <span style="color:#fff">"FDM 3D-Printers (PLA / PETG)"</span>,</p>
-        <p><span style="color:var(--orange)">"project_type"</span>: <span style="color:#fff">"Корпусы роботов и механизмы"</span></p>
-        <br>
-        <p style="color: #64748b;">// Проверка доступных рабочих мест...</p>
-        <p>&gt; Status: <span style="color:var(--cyan)">[ACTIVE ENROLLMENT]</span></p>
+    <!-- Блок фотографии принтера -->
+    <div class="printer-image-wrapper">
+      <img src="printer3d.jpeg" alt="3D-принтер в процессе печати" class="printer-img">
+      <div class="printer-overlay-badge">
+        <div class="status-dot"></div>
+        <span>FDM PRINTER :: READY</span>
       </div>
     </div>
   </section>
