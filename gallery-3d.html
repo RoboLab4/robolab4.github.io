@@ -216,60 +216,48 @@
       box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
     }
 
-    /* Кибер-контейнер для фотографии printer3d.jpeg */
-    .printer-image-wrapper {
-      position: relative;
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      padding: 12px;
-      border-radius: 16px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 243, 255, 0.15);
-      backdrop-filter: blur(10px);
-      clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
-      transition: all 0.4s ease;
-    }
+    /* Контейнер карточки принтера */
+.printer-image-wrapper {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--cyan);
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.1);
+  backdrop-filter: blur(10px);
+  clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
 
-    .printer-image-wrapper:hover {
-      border-color: var(--cyan);
-      box-shadow: 0 20px 45px rgba(0, 243, 255, 0.3);
-      transform: translateY(-5px);
-    }
+.printer-image-wrapper:hover {
+  box-shadow: 0 0 45px rgba(0, 243, 255, 0.45);
+  transform: translateY(-4px);
+}
 
-    .printer-img {
-      width: 100%;
-      height: auto;
-      max-height: 420px;
-      object-fit: cover;
-      display: block;
-      border-radius: 8px;
-    }
+/* Настройки самого изображения printer3d.jpeg */
+.printer-img {
+  width: 100%;
+  height: 440px; /* Оптимальная высота для вертикального кадра */
+  object-fit: cover; /* Заполняет блок без искажения пропорций */
+  object-position: center 35%; /* Сдвигает фокус на сам принтер и катушки */
+  display: block;
+  border-radius: 10px;
+  filter: contrast(105%) brightness(95%); /* Легкая цветокоррекция под кибер-стиль */
+}
 
-    /* Плашка поверх фото */
-    .printer-overlay-badge {
-      position: absolute;
-      bottom: 25px;
-      left: 25px;
-      background: rgba(5, 8, 17, 0.85);
-      border: 1px solid var(--cyan);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.85rem;
-      color: var(--cyan);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #27c93f;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #27c93f;
-    }
+/* Дополнительный градиентный виньет поверх фото */
+.printer-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(5, 8, 17, 0.2) 0%, rgba(5, 8, 17, 0.6) 100%);
+  pointer-events: none;
+  border-radius: 10px;
+}
 
     /* Секции */
     .container {
