@@ -129,6 +129,7 @@
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
+      cursor: pointer; /* Указываем, что элемент кликабельный */
     }
 
     .result-card:hover {
@@ -210,6 +211,46 @@
       border: 1px solid var(--cyan);
     }
 
+    /* Модальное окно для просмотра дипломов/грамот */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 10px;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+      object-fit: contain;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: var(--cyan);
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: var(--orange);
+    }
+
     footer {
       border-top: 1px solid var(--glass-border);
       text-align: center;
@@ -248,17 +289,17 @@
       <h2 class="category-title"><i class="fa-solid fa-flag"></i> Республиканские конкурсы</h2>
       <div class="results-grid">
         
-        <div class="result-card">
+        <div class="result-card" data-img="gramota1.jpg">
           <div>
             <div class="result-header">
-              <h3>"Ақбота" Республиканская интеллектуальная олимпиада (Цифровая грамотность)[cite: 3]</h3>
-              <span class="badge-place place-2"><i class="fa-solid fa-medal"></i> 2 место[cite: 3]</span>
+              <h3>"Ақбота" Республиканская интеллектуальная олимпиада (Цифровая грамотность)</h3>
+              <span class="badge-place place-2"><i class="fa-solid fa-medal"></i> 2 место</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Танакпаева Диана[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Танакпаева Диана</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-award"></i> Диплом победителя № AqBT-JMb-D-II-2024-056619[cite: 3]</span>
-            <span>2024 | Онлайн[cite: 3]</span>
+            <span><i class="fa-solid fa-award"></i> Диплом победителя № AqBT-JMb-D-II-2024-056619</span>
+            <span>2024 | Онлайн</span>
           </div>
         </div>
 
@@ -270,115 +311,115 @@
       <h2 class="category-title"><i class="fa-solid fa-trophy"></i> Областные конкурсы и фестивали</h2>
       <div class="results-grid">
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota2.jpg">
           <div>
             <div class="result-header">
-              <h3>Областные соревнования по робототехнике «Жинаңыз және бағдарламалаңыз» (11-14 лет)[cite: 3]</h3>
-              <span class="badge-place place-1"><i class="fa-solid fa-trophy"></i> 1 место[cite: 3]</span>
+              <h3>Областные соревнования по робототехнике «Жинаңыз және бағдарламалаңыз» (11-14 лет)</h3>
+              <span class="badge-place place-1"><i class="fa-solid fa-trophy"></i> 1 место</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Гончар Фёдор[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Гончар Фёдор</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-award"></i> Диплом победителя I степени[cite: 3]</span>
-            <span>2025 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-award"></i> Диплом победителя I степени</span>
+            <span>2025 | Костанай</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota3.jpg">
           <div>
             <div class="result-header">
-              <h3>Областные соревнования по робототехнике «Жинаңыз және бағдарламалаңыз» (8-10 лет)[cite: 3]</h3>
-              <span class="badge-place place-2"><i class="fa-solid fa-medal"></i> 2 место[cite: 3]</span>
+              <h3>Областные соревнования по робототехнике «Жинаңыз және бағдарламалаңыз» (8-10 лет)</h3>
+              <span class="badge-place place-2"><i class="fa-solid fa-medal"></i> 2 место</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-users"></i> Андерсон Илья, Лачин Макар[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-users"></i> Андерсон Илья, Лачин Макар</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-award"></i> Диплом победителя II степени[cite: 3]</span>
-            <span>2025 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-award"></i> Диплом победителя II степени</span>
+            <span>2025 | Костанай</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota4.jpg">
           <div>
             <div class="result-header">
-              <h3>R:ED FEST — Международный фестиваль «Движение по линии» (10-13 лет)[cite: 3]</h3>
-              <span class="badge-place place-3"><i class="fa-solid fa-medal"></i> 3 место[cite: 3]</span>
+              <h3>R:ED FEST — Международный фестиваль «Движение по линии» (10-13 лет)</h3>
+              <span class="badge-place place-3"><i class="fa-solid fa-medal"></i> 3 место</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Мазуренко Владислав[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Мазуренко Владислав</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-award"></i> Диплом победителя III степени[cite: 3]</span>
-            <span>2025 | с. Заречное[cite: 3]</span>
+            <span><i class="fa-solid fa-award"></i> Диплом победителя III степени</span>
+            <span>2025 | с. Заречное</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota5.jpg">
           <div>
             <div class="result-header">
-              <h3>«National Robotics Games: Alikhan Bokeikhan» областные национальные соревнования[cite: 3]</h3>
-              <span class="badge-place badge-participant">Сертификат[cite: 3]</span>
+              <h3>«National Robotics Games: Alikhan Bokeikhan» областные национальные соревнования</h3>
+              <span class="badge-place badge-participant">Сертификат</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-users"></i> Гончар Ф., Кондратьев Д., Андерсон И., Лачин М.[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-users"></i> Гончар Ф., Кондратьев Д., Андерсон И., Лачин М.</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-certificate"></i> Сертификат участника[cite: 3]</span>
-            <span>2025 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-certificate"></i> Сертификат участника</span>
+            <span>2025 | Костанай</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota6.jpg">
           <div>
             <div class="result-header">
-              <h3>Областной этап конкурса экологических проектов «ProEco»[cite: 3]</h3>
-              <span class="badge-place badge-participant">Сертификат[cite: 3]</span>
+              <h3>Областной этап конкурса экологических проектов «ProEco»</h3>
+              <span class="badge-place badge-participant">Сертификат</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Князев Денис[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Князев Денис</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-certificate"></i> Сертификат №037152[cite: 3]</span>
-            <span>2025 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-certificate"></i> Сертификат №037152</span>
+            <span>2025 | Костанай</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota7.jpg">
           <div>
             <div class="result-header">
-              <h3>R:ED FEST — Открытый международный фестиваль по робототехнике[cite: 3]</h3>
-              <span class="badge-place badge-participant">Участники[cite: 3]</span>
+              <h3>R:ED FEST — Открытый международный фестиваль по робототехнике</h3>
+              <span class="badge-place badge-participant">Участники</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-users"></i> Хлызов Максим, Гончар Фёдор[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-users"></i> Хлызов Максим, Гончар Фёдор</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-certificate"></i> Диплом участника[cite: 3]</span>
-            <span>2024 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-certificate"></i> Диплом участника</span>
+            <span>2024 | Костанай</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota8.jpg">
           <div>
             <div class="result-header">
-              <h3>Областной фестиваль «STEM-FEST»[cite: 3]</h3>
-              <span class="badge-place badge-participant">Участники[cite: 3]</span>
+              <h3>Областной фестиваль «STEM-FEST»</h3>
+              <span class="badge-place badge-participant">Участники</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-users"></i> Гончар Ф., Кондратьев Д., Свиренко К., Лачин М.[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-users"></i> Гончар Ф., Кондратьев Д., Свиренко К., Лачин М.</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-certificate"></i> Сертификат участника[cite: 3]</span>
-            <span>2025 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-certificate"></i> Сертификат участника</span>
+            <span>2025 | Костанай</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota9.jpg">
           <div>
             <div class="result-header">
-              <h3>Областной конкурс «STEM-FEST»[cite: 3]</h3>
-              <span class="badge-place badge-participant">Участники[cite: 3]</span>
+              <h3>Областной конкурс «STEM-FEST»</h3>
+              <span class="badge-place badge-participant">Участники</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-users"></i> Хлызов М., Гончар Ф., Рачков Д.[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-users"></i> Хлызов М., Гончар Ф., Рачков Д.</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-certificate"></i> Сертификат участника[cite: 3]</span>
-            <span>2023 - 2024 | Костанай[cite: 3]</span>
+            <span><i class="fa-solid fa-certificate"></i> Сертификат участника</span>
+            <span>2023 - 2024 | Костанай</span>
           </div>
         </div>
 
@@ -390,45 +431,45 @@
       <h2 class="category-title"><i class="fa-solid fa-city"></i> Городские конкурсы</h2>
       <div class="results-grid">
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota10.jpg">
           <div>
             <div class="result-header">
-              <h3>Конкурс проектов «Моя инициатива – моей Родине»[cite: 3]</h3>
-              <span class="badge-place place-1"><i class="fa-solid fa-trophy"></i> 1 место[cite: 3]</span>
+              <h3>Конкурс проектов «Моя инициатива – моей Родине»</h3>
+              <span class="badge-place place-1"><i class="fa-solid fa-trophy"></i> 1 место</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Князев Денис[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Князев Денис</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-award"></i> Диплом победителя I степени[cite: 3]</span>
-            <span>2025 | Рудный[cite: 3]</span>
+            <span><i class="fa-solid fa-award"></i> Диплом победителя I степени</span>
+            <span>2025 | Рудный</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota11.jpg">
           <div>
             <div class="result-header">
-              <h3>Экологический конкурс «ProEco» (Направление «Природа родного края»)[cite: 3]</h3>
-              <span class="badge-place place-1"><i class="fa-solid fa-trophy"></i> 1 место[cite: 3]</span>
+              <h3>Экологический конкурс «ProEco» (Направление «Природа родного края»)</h3>
+              <span class="badge-place place-1"><i class="fa-solid fa-trophy"></i> 1 место</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Князев Денис[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Князев Денис</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-award"></i> Грамота победителя I степени[cite: 3]</span>
-            <span>2025 | Рудный[cite: 3]</span>
+            <span><i class="fa-solid fa-award"></i> Грамота победителя I степени</span>
+            <span>2025 | Рудный</span>
           </div>
         </div>
 
-        <div class="result-card">
+        <div class="result-card" data-img="gramota12.jpg">
           <div>
             <div class="result-header">
-              <h3>«Зерде» ХХ городское научное соревнование учащихся[cite: 3]</h3>
-              <span class="badge-place badge-participant">Сертификат[cite: 3]</span>
+              <h3>«Зерде» ХХ городское научное соревнование учащихся</h3>
+              <span class="badge-place badge-participant">Сертификат</span>
             </div>
-            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Сисина Арина[cite: 3]</div>
+            <div class="student-name"><i class="fa-solid fa-user-graduate"></i> Сисина Арина</div>
           </div>
           <div class="result-footer">
-            <span><i class="fa-solid fa-certificate"></i> Сертификат участника[cite: 3]</span>
-            <span>2024 | Рудный[cite: 3]</span>
+            <span><i class="fa-solid fa-certificate"></i> Сертификат участника</span>
+            <span>2024 | Рудный</span>
           </div>
         </div>
 
@@ -437,9 +478,44 @@
 
   </div>
 
+  <!-- Модальное окно -->
+  <div id="imageModal" class="modal">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Грамота / Сертификат">
+  </div>
+
   <footer>
     <p>Персональный сайт-блог педагога дополнительного образования Свиренко В. И. &copy; 2026</p>
   </footer>
+
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Назначаем событие клика на каждую карточку с грамотой
+    document.querySelectorAll('.result-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const imgSrc = this.getAttribute('data-img');
+        if (imgSrc) {
+          modalImg.src = imgSrc;
+          modal.style.display = 'flex';
+        }
+      });
+    });
+
+    // Закрытие при клике на крестик
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Закрытие при клике на свободную область вокруг картинки
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
 
 </body>
 </html>
