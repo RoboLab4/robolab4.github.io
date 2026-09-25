@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Кружок Робототехники | Свиренко В.И.</title>
+  <title>3D-Моделирование и Печать | ROBO-LAB</title>
   
   <!-- Шрифты Google Fonts и FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,6 @@
       font-size: 1.1rem;
     }
 
-    /* Анимированный Canvas на заднем плане */
     #particle-canvas {
       position: fixed;
       top: 0;
@@ -54,7 +53,7 @@
       letter-spacing: 1px;
     }
 
-    /* Кибернетическая Шапка */
+    /* Шапка */
     header {
       background: rgba(5, 8, 17, 0.85);
       backdrop-filter: blur(12px);
@@ -100,7 +99,6 @@
       font-weight: 600;
     }
 
-    /* Кнопка Мобильного Меню (Гамбургер) */
     .menu-toggle {
       display: none;
       background: transparent;
@@ -111,11 +109,6 @@
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.3s;
-    }
-
-    .menu-toggle:hover {
-      background: rgba(0, 243, 255, 0.1);
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
     }
 
     .nav-menu {
@@ -130,7 +123,6 @@
       font-weight: 600;
       font-size: 1rem;
       transition: all 0.3s;
-      position: relative;
     }
 
     .nav-menu a:hover {
@@ -138,9 +130,9 @@
       text-shadow: 0 0 8px var(--cyan);
     }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
-      min-height: 85vh;
+      min-height: 80vh;
       max-width: 1300px;
       margin: 0 auto;
       display: grid;
@@ -155,9 +147,9 @@
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
-      background: rgba(255, 107, 0, 0.15);
-      border: 1px solid var(--orange);
-      color: var(--orange);
+      background: rgba(0, 243, 255, 0.15);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
       border-radius: 20px;
       font-size: 0.9rem;
       font-weight: 700;
@@ -165,7 +157,7 @@
     }
 
     .hero-text h2 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       line-height: 1.1;
       margin-bottom: 1.2rem;
       background: linear-gradient(135deg, #ffffff 30%, var(--cyan));
@@ -180,7 +172,6 @@
       line-height: 1.5;
     }
 
-    /* Кнопки в неоновом стиле */
     .btn-group {
       display: flex;
       gap: 1.2rem;
@@ -195,7 +186,6 @@
       text-decoration: none;
       border: none;
       cursor: pointer;
-      position: relative;
       clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
       transition: all 0.3s;
       display: inline-flex;
@@ -226,7 +216,7 @@
       box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
     }
 
-    /* Интерактивная карточка-терминал */
+    /* Терминал параметров курса */
     .terminal-card {
       background: var(--card-bg);
       border: 1px solid var(--glass-border);
@@ -234,8 +224,6 @@
       padding: 1.5rem;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
-      position: relative;
-      scroll-margin-top: 90px;
     }
 
     .terminal-header {
@@ -260,36 +248,7 @@
       word-break: break-word;
     }
 
-    /* Статистика / Счетчик */
-    .stats-grid {
-      max-width: 1300px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      color: var(--orange);
-      font-weight: 900;
-    }
-
-    .stat-label {
-      color: #94a3b8;
-      font-size: 0.95rem;
-    }
-
-    /* Разделы и Карточки */
+    /* Секции */
     .container {
       max-width: 1300px;
       margin: 4rem auto;
@@ -306,155 +265,122 @@
 
     .section-title span { color: var(--cyan); }
 
-    .grid-3 {
+    /* Программа курса (Модули) */
+    .modules-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
 
-    .glass-card {
+    .module-card {
       background: var(--card-bg);
       border: 1px solid var(--glass-border);
       border-radius: 12px;
       padding: 2rem;
       transition: all 0.3s;
       position: relative;
-      overflow: hidden;
     }
 
-    .glass-card:hover {
+    .module-card:hover {
       transform: translateY(-7px);
       border-color: var(--cyan);
       box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
     }
 
-    .card-icon-box {
-      width: 60px;
-      height: 60px;
-      background: rgba(0, 243, 255, 0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .module-number {
+      font-family: 'Orbitron', sans-serif;
       font-size: 1.8rem;
-      color: var(--cyan);
-      margin-bottom: 1.5rem;
+      color: var(--orange);
+      font-weight: 900;
+      margin-bottom: 0.8rem;
     }
 
-    /* Интерактивный опрос */
-    .poll-box {
+    .module-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .module-card ul {
+      list-style: none;
+      color: #94a3b8;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .module-card ul li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .module-card ul li i {
+      color: var(--cyan);
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+
+    /* Карточки стека и технологий */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tech-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .tech-icon {
+      font-size: 2.5rem;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    /* Форма записи */
+    .apply-box {
       background: var(--card-bg);
       border: 1px solid var(--glass-border);
       border-radius: 12px;
-      padding: 2rem;
-      max-width: 700px;
+      padding: 2.5rem;
+      max-width: 650px;
       margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .poll-btn {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #fff;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      text-align: left;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .form-group {
+      margin-bottom: 1.5rem;
     }
 
-    .poll-btn:hover {
-      border-color: var(--cyan);
-      background: rgba(0, 243, 255, 0.1);
-      padding-left: 1.5rem;
-    }
-
-    /* Стили для Галереи */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .gallery-card {
-      position: relative;
-      min-height: 240px;
-      border-radius: 15px;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-color: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      text-decoration: none;
+    .form-group label {
       display: block;
-      transition: all 0.4s ease;
-    }
-
-    .gallery-card-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(0deg, rgba(5, 8, 17, 0.95) 0%, rgba(5, 8, 17, 0.4) 60%, rgba(5, 8, 17, 0.2) 100%);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-card .icon {
+      margin-bottom: 0.5rem;
       color: var(--cyan);
-      margin-bottom: auto;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-card-title {
-      color: #fff;
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.3;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      font-size: 0.9rem;
     }
 
-    .gallery-link-text {
-      color: var(--orange);
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-card:hover {
-      transform: translateY(-7px);
-      border-color: var(--cyan);
-      box-shadow: 0 8px 25px rgba(0, 243, 255, 0.25);
-    }
-
-    .gallery-card:hover .gallery-card-overlay {
-      background: linear-gradient(0deg, rgba(5, 8, 17, 0.98) 0%, rgba(5, 8, 17, 0.6) 100%);
-    }
-
-    .gallery-card:hover .icon {
-      transform: scale(1.1);
+    .form-control {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: rgba(5, 8, 17, 0.8);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
       color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      transition: all 0.3s;
     }
 
-    .gallery-card:hover .gallery-link-text {
-      transform: translateX(5px);
-      color: var(--cyan);
+    .form-control:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
     }
 
     /* Подвал */
@@ -466,12 +392,8 @@
       color: #64748b;
     }
 
-    /* Мобильная адаптивность */
     @media (max-width: 900px) {
-      .menu-toggle {
-        display: block;
-      }
-
+      .menu-toggle { display: block; }
       .nav-menu {
         position: absolute;
         top: 100%;
@@ -480,39 +402,13 @@
         background: rgba(5, 8, 17, 0.98);
         backdrop-filter: blur(15px);
         flex-direction: column;
-        gap: 0;
-        border-bottom: 1px solid var(--glass-border);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         display: none;
+        border-bottom: 1px solid var(--glass-border);
       }
-
-      .nav-menu.active {
-        display: flex;
-      }
-
-      .nav-menu li {
-        width: 100%;
-      }
-
-      .nav-menu a {
-        display: block;
-        padding: 1rem 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .hero { 
-        grid-template-columns: 1fr; 
-        text-align: center; 
-        padding: 2rem 1.5rem;
-      }
-
-      .hero-text h2 {
-        font-size: 2.2rem;
-      }
-
-      .btn-group { 
-        justify-content: center; 
-      }
+      .nav-menu.active { display: flex; }
+      .nav-menu a { display: block; padding: 1rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 2rem 1.5rem; }
+      .btn-group { justify-content: center; }
     }
   </style>
 </head>
@@ -524,7 +420,7 @@
   <!-- ШАПКА -->
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">
+      <a href="index.html" class="logo">
         <i class="fa-solid fa-microchip"></i>
         <div class="logo-text">
           <h1>ROBO-LAB</h1>
@@ -532,16 +428,15 @@
         </div>
       </a>
       
-      <!-- Кнопка бургер-меню для смартфонов -->
       <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
         <i class="fa-solid fa-bars"></i>
       </button>
 
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="about_me.html">О педагоге</a></li>
-        <li><a href="#directions">Направления</a></li>
-        <li><a href="#poll">Опрос</a></li>
-        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="#program">Программа</a></li>
+        <li><a href="#tech">Оборудование</a></li>
+        <li><a href="#apply">Записаться</a></li>
       </ul>
     </div>
   </header>
@@ -549,127 +444,139 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-text">
-      <div class="badge"><i class="fa-solid fa-bolt"></i> Дополнительное образование</div>
-      <h2>Инженерия. Кодинг. Будущее.</h2>
-      <p>Робототехника и инженерное проектирование: школьники осваивают 3D-моделирование, основы электроники и программирования, проектируют и собирают робототехнические устройства на базе LEGO SPIKE, Arduino и наборов RED X, реализуя собственные проекты и автономные системы.</p>
+      <div class="badge"><i class="fa-solid fa-cube"></i> Практический курс</div>
+      <h2>3D-Моделирование и Аддитивные Технологии</h2>
+      <p>Превращаем виртуальные идеи в реальные физические объекты. Ученики осваивают двухмерные чертежи, объемное 3D-проектирование корпусов и деталей, подготовку к печати (слайсинг) и работу с современными 3D-принтерами.</p>
       <div class="btn-group">
-        <a href="#directions" class="cyber-btn cyber-btn-primary"><i class="fa-solid fa-rocket"></i> Изучить курсы</a>
-        <a href="#gallery" class="cyber-btn cyber-btn-outline"><i class="fa-solid fa-images"></i> Галерея работ</a>
+        <a href="#apply" class="cyber-btn cyber-btn-primary"><i class="fa-solid fa-pen-to-square"></i> Подать заявку</a>
+        <a href="#program" class="cyber-btn cyber-btn-outline"><i class="fa-solid fa-list-check"></i> Учебный план</a>
       </div>
     </div>
 
-    <!-- Интерактивная карточка с информацией о педагоге -->
-    <div class="terminal-card" id="about">
+    <!-- Терминал спецификаций курса -->
+    <div class="terminal-card">
       <div class="terminal-header">
         <div class="dot dot-red"></div>
         <div class="dot dot-yellow"></div>
         <div class="dot dot-green"></div>
-        <span style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">teacher_profile.js</span>
+        <span style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">course_config.json</span>
       </div>
       <div class="terminal-body">
-        <p><span style="color:var(--orange)">const</span> teacher = <span style="color:#fff">"Свиренко Владимир Иванович"</span>;</p>
-        <p><span style="color:var(--orange)">const</span> status = <span style="color:#fff">"Идёт набор учащихся"</span>;</p>
-        <p><span style="color:var(--orange)">let</span> skills = [<span style="color:#27c93f">"Arduino"</span>, <span style="color:#27c93f">"3D-печать"</span>, <span style="color:#27c93f">"Python"</span>];</p>
+        <p><span style="color:var(--orange)">"course_name"</span>: <span style="color:#fff">"3D Modeling & Printing"</span>,</p>
+        <p><span style="color:var(--orange)">"target_age"</span>: <span style="color:#fff">"5-11 классы"</span>,</p>
+        <p><span style="color:var(--orange)">"cad_software"</span>: [<span style="color:#27c93f">"Tinkercad"</span>, <span style="color:#27c93f">"FreeCAD / Fusion"</span>],</p>
+        <p><span style="color:var(--orange)">"hardware"</span>: <span style="color:#fff">"FDM 3D-Printers (PLA / PETG)"</span>,</p>
+        <p><span style="color:var(--orange)">"project_type"</span>: <span style="color:#fff">"Корпусы роботов и механизмы"</span></p>
         <br>
-        <p style="color: #64748b;">// Выполнение команды инициализации...</p>
-        <p>&gt; ROBO_LAB.init() <span style="color:var(--cyan)">[OK]</span></p>
-        <p>&gt; System ready for academic year...</p>
+        <p style="color: #64748b;">// Проверка доступных рабочих мест...</p>
+        <p>&gt; Status: <span style="color:var(--cyan)">[ACTIVE ENROLLMENT]</span></p>
       </div>
     </div>
   </section>
 
-  <!-- СЧЕТЧИКИ И СТАТИСТИКА -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-number">3D</div>
-      <div class="stat-label">Моделирование и печать</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">Практические навыки</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">C++ / Py</div>
-      <div class="stat-label">Языки программирования</div>
-    </div>
-  </div>
-
-  <!-- НАПРАВЛЕНИЯ ОБУЧЕНИЯ -->
-  <section class="container" id="directions">
-    <h2 class="section-title">Чему <span>обучаются</span> ребята</h2>
-    <div class="grid-3">
+  <!-- ПРОГРАММА КУРСА -->
+  <section class="container" id="program">
+    <h2 class="section-title">Программа <span>обучения</span></h2>
+    <div class="modules-grid">
       
-      <div class="glass-card">
-        <div class="card-icon-box"><i class="fa-solid fa-cube"></i></div>
-        <h3>3D-Проектирование</h3>
-        <p>Создание трехмерных моделей деталей и корпусов роботов в CAD-системах с последующей печатью на 3D-принтерах.</p>
+      <div class="module-card">
+        <div class="module-number">01</div>
+        <h3>Основы 3D-Графики и CAD</h3>
+        <ul>
+          <li><i class="fa-solid fa-angle-right"></i> Трехмерные координаты и эскизы</li>
+          <li><i class="fa-solid fa-angle-right"></i> Базовые операции: вытягивание, вращение, фаски</li>
+          <li><i class="fa-solid fa-angle-right"></i> Создание первых простых деталей в Tinkercad</li>
+        </ul>
       </div>
 
-      <div class="glass-card">
-        <div class="card-icon-box" style="color: var(--orange); background: rgba(255, 107, 0, 0.1);"><i class="fa-solid fa-cpu"></i></div>
-        <h3>Микроконтроллеры</h3>
-        <p>Сборка электронных схем, подключение датчиков движения, ультразвука и управления сервоприводами.</p>
+      <div class="module-card">
+        <div class="module-number">02</div>
+        <h3>Инженерное Проектирование</h3>
+        <ul>
+          <li><i class="fa-solid fa-angle-right"></i> Точные измерения штангенциркулем</li>
+          <li><i class="fa-solid fa-angle-right"></i> Проектирование с учетом допусков и посадок</li>
+          <li><i class="fa-solid fa-angle-right"></i> Создание сборных механизмов и передач</li>
+        </ul>
       </div>
 
-      <div class="glass-card">
-        <div class="card-icon-box" style="color: var(--purple); background: rgba(157, 0, 255, 0.1);"><i class="fa-solid fa-code"></i></div>
-        <h3>Алгоритмы и Код</h3>
-        <p>Разработка логики поведения роботов: от простых алгоритмов движения по линии до обхода препятствий.</p>
+      <div class="module-card">
+        <div class="module-number">03</div>
+        <h3>Слайсинг и Подготовка</h3>
+        <ul>
+          <li><i class="fa-solid fa-angle-right"></i> Настройка G-кода и слайсеров (Bambu Studio / Cura)</li>
+          <li><i class="fa-solid fa-angle-right"></i> Подбор высоты слоя, заполнения и поддержек</li>
+          <li><i class="fa-solid fa-angle-right"></i> Расчет времени печати и расхода пластика</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <div class="module-number">04</div>
+        <h3>Практика 3D-Печати</h3>
+        <ul>
+          <li><i class="fa-solid fa-angle-right"></i> Обслуживание и калибровка 3D-принтера</li>
+          <li><i class="fa-solid fa-angle-right"></i> Работа с пластиком PLA, PETG</li>
+          <li><i class="fa-solid fa-angle-right"></i> Постобработка и сборка готового изделия</li>
+        </ul>
       </div>
 
     </div>
   </section>
 
-  <!-- ОПРОС ДЛЯ РОДИТЕЛЕЙ И УЧЕНИКОВ -->
-  <section class="container" id="poll">
-    <h2 class="section-title">Интерактивный <span>опрос</span></h2>
-    <div class="poll-box">
-      <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Какой проект вы бы хотели реализовать в этом учебном году?</h3>
-      <button class="poll-btn" onclick="registerVote('Умный дом')">
-        <i class="fa-solid fa-house-signal" style="color: var(--cyan)"></i> Система «Умный дом» на Arduino
-      </button>
-      <button class="poll-btn" onclick="registerVote('Автономный робот')">
-        <i class="fa-solid fa-robot" style="color: var(--orange)"></i> Робот для соревнований по маневрированию
-      </button>
-      <button class="poll-btn" onclick="registerVote('3D-модель')">
-        <i class="fa-solid fa-print" style="color: var(--purple)"></i> Собственная 3D-модель механического манипулятора
-      </button>
-      <div id="vote-message" style="margin-top: 1rem; color: var(--cyan); font-weight: bold; text-align: center;"></div>
+  <!-- ИСПОЛЬЗУЕМЫЕ ТЕХНОЛОГИИ -->
+  <section class="container" id="tech">
+    <h2 class="section-title">Инструменты и <span>Стек</span></h2>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon"><i class="fa-solid fa-shapes"></i></div>
+        <h3>3D-CAD Софт</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 5px;">Проектирование деталей любой сложности</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-icon" style="color: var(--orange);"><i class="fa-solid fa-print"></i></div>
+        <h3>FDM Принтеры</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 5px;">Печать деталей на современном оборудовании</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-icon" style="color: var(--purple);"><i class="fa-solid fa-layer-group"></i></div>
+        <h3>Слайсинг</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 5px;">Оптимизация траектории печати и G-кода</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-icon" style="color: #27c93f;"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Post-Processing</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 5px;">Шлифовка, сборка и финальная подгонка</p>
+      </div>
     </div>
   </section>
 
-  <!-- ГАЛЕРЕЯ МЕСТ ПОД ФОТО -->
-  <section class="container" id="gallery">
-    <h2 class="section-title">Галерея <span>кружка</span></h2>
-    <div class="gallery-grid">
-      
-      <!-- Блок 1: Занятия и сборка схем -->
-      <a href="gallery-lessons.html" class="gallery-card" style="background-image: url('photo1.jpg');">
-        <div class="gallery-card-overlay">
-          <i class="fa-solid fa-camera fa-2x icon"></i>
-          <span class="gallery-card-title">Занятия и сборка схем</span>
-          <span class="gallery-link-text">Смотреть фото <i class="fa-solid fa-arrow-right"></i></span>
+  <!-- ФОРМА ЗАПИСИ -->
+  <section class="container" id="apply">
+    <h2 class="section-title">Запись на <span>курс</span></h2>
+    <div class="apply-box">
+      <form id="courseForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="studentName"><i class="fa-solid fa-user"></i> Имя и Фамилия ученика</label>
+          <input type="text" id="studentName" class="form-control" placeholder="Иван Иванов" required>
         </div>
-      </a>
 
-      <!-- Блок 2: Работа 3D-принтера -->
-      <a href="gallery-3d.html" class="gallery-card" style="background-image: url('photo2.jpg');">
-        <div class="gallery-card-overlay">
-          <i class="fa-solid fa-print fa-2x icon"></i>
-          <span class="gallery-card-title">Работа 3D-принтера</span>
-          <span class="gallery-link-text">Смотреть фото <i class="fa-solid fa-arrow-right"></i></span>
+        <div class="form-group">
+          <label for="grade"><i class="fa-solid fa-graduation-cap"></i> Класс обучения</label>
+          <input type="text" id="grade" class="form-control" placeholder="7 класс" required>
         </div>
-      </a>
 
-      <!-- Блок 3: Готовые роботы учеников -->
-      <a href="gallery-robots.html" class="gallery-card" style="background-image: url('photo3.jpg');">
-        <div class="gallery-card-overlay">
-          <i class="fa-solid fa-trophy fa-2x icon"></i>
-          <span class="gallery-card-title">Готовые роботы учеников</span>
-          <span class="gallery-link-text">Смотреть фото <i class="fa-solid fa-arrow-right"></i></span>
+        <div class="form-group">
+          <label for="parentPhone"><i class="fa-solid fa-phone"></i> Телефон родителя (WhatsApp)</label>
+          <input type="tel" id="parentPhone" class="form-control" placeholder="+7 (700) 000-00-00" required>
         </div>
-      </a>
 
+        <button type="submit" class="cyber-btn cyber-btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
+          <i class="fa-solid fa-paper-plane"></i> Отправить заявку
+        </button>
+      </form>
+      <div id="formMessage" style="margin-top: 1.5rem; text-align: center; color: var(--cyan); font-weight: bold;"></div>
     </div>
   </section>
 
@@ -679,9 +586,8 @@
     <p style="margin-top: 5px; font-size: 0.85rem;">Персональный образовательный сайт-блог | Костанайская область</p>
   </footer>
 
-  <!-- Скрипты: логика мобильного меню, частиц и голосования -->
   <script>
-    // Управление мобильным меню
+    // Мобильное меню
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
 
@@ -697,19 +603,7 @@
       }
     });
 
-    // Закрывать меню при клике на любой пункт
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        const icon = menuToggle.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-        }
-      });
-    });
-
-    // Анимация фона "Частицы и связи"
+    // Анимация фона "Частицы"
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -768,9 +662,13 @@
     }
     animate();
 
-    // Голосование
-    function registerVote(option) {
-      document.getElementById('vote-message').innerHTML = '<i class="fa-solid fa-check-circle"></i> Голос за "' + option + '" учтён! Спасибо за участие.';
+    // Обработка отправки формы
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value;
+      const msg = document.getElementById('formMessage');
+      msg.innerHTML = `<i class="fa-solid fa-circle-check"></i> Заявка для ученика ${name} успешно принята! Мы свяжемся с вами в WhatsApp.`;
+      document.getElementById('courseForm').reset();
     }
   </script>
 </body>
