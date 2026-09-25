@@ -130,13 +130,13 @@
       text-shadow: 0 0 8px var(--cyan);
     }
 
-    /* Hero */
+    /* Hero Section */
     .hero {
       min-height: 80vh;
       max-width: 1300px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 3rem;
       align-items: center;
       padding: 3rem 2rem;
@@ -216,48 +216,69 @@
       box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
     }
 
-    /* Контейнер карточки принтера */
-.printer-image-wrapper {
-  position: relative;
-  background: var(--card-bg);
-  border: 1px solid var(--cyan);
-  padding: 8px;
-  border-radius: 16px;
-  box-shadow: 0 0 30px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.1);
-  backdrop-filter: blur(10px);
-  clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
+    /* ИСПРАВЛЕННЫЙ БЛОК ФОТОГРАФИИ ПРИНТЕРА */
+    .printer-image-wrapper {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--cyan);
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.2), inset 0 0 15px rgba(0, 243, 255, 0.1);
+      backdrop-filter: blur(10px);
+      clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+      transition: all 0.4s ease;
+      max-width: 480px;
+      margin: 0 auto;
+    }
 
-.printer-image-wrapper:hover {
-  box-shadow: 0 0 45px rgba(0, 243, 255, 0.45);
-  transform: translateY(-4px);
-}
+    .printer-image-wrapper:hover {
+      box-shadow: 0 0 45px rgba(0, 243, 255, 0.4);
+      transform: translateY(-4px);
+    }
 
-/* Настройки самого изображения printer3d.jpeg */
-.printer-img {
-  width: 100%;
-  height: 440px; /* Оптимальная высота для вертикального кадра */
-  object-fit: cover; /* Заполняет блок без искажения пропорций */
-  object-position: center 35%; /* Сдвигает фокус на сам принтер и катушки */
-  display: block;
-  border-radius: 10px;
-  filter: contrast(105%) brightness(95%); /* Легкая цветокоррекция под кибер-стиль */
-}
+    .printer-img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center 25%; /* Точное центрирование на Prusa i3 MK3 */
+      display: block;
+      border-radius: 10px;
+      filter: contrast(108%) brightness(98%) sharpness(110%);
+    }
 
-/* Дополнительный градиентный виньет поверх фото */
-.printer-image-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(5, 8, 17, 0.2) 0%, rgba(5, 8, 17, 0.6) 100%);
-  pointer-events: none;
-  border-radius: 10px;
-}
+    /* Индикатор состояния поверх фотографии */
+    .printer-overlay-badge {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      background: rgba(5, 8, 17, 0.85);
+      border: 1px solid var(--cyan);
+      padding: 8px 16px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(8px);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--cyan);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #27c93f;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #27c93f;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
 
     /* Секции */
     .container {
@@ -276,7 +297,7 @@
 
     .section-title span { color: var(--cyan); }
 
-    /* Программа курса (Модули) */
+    /* Программа курса */
     .modules-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -420,6 +441,7 @@
       .nav-menu a { display: block; padding: 1rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
       .hero { grid-template-columns: 1fr; text-align: center; padding: 2rem 1.5rem; }
       .btn-group { justify-content: center; }
+      .printer-img { height: 380px; }
     }
   </style>
 </head>
@@ -466,10 +488,10 @@
 
     <!-- Блок фотографии принтера -->
     <div class="printer-image-wrapper">
-      <img src="printer3d.jpeg" alt="3D-принтер в процессе печати" class="printer-img">
+      <img src="printer3d.jpeg" alt="3D-принтер Original Prusa i3 MK3" class="printer-img">
       <div class="printer-overlay-badge">
         <div class="status-dot"></div>
-        <span>FDM PRINTER :: READY</span>
+        <span>PRUSA i3 MK3 :: ONLINE</span>
       </div>
     </div>
   </section>
@@ -554,7 +576,7 @@
 
   <!-- ФОРМА ЗАПИСИ -->
   <section class="container" id="apply">
-    <h2 class="section-title">Запись на <span>курс</span> сейчас приостановлена!</h2>
+    <h2 class="section-title">Запись на <span>курс</span></h2>
     <div class="apply-box">
       <form id="courseForm" onsubmit="handleFormSubmit(event)">
         <div class="form-group">
@@ -667,7 +689,7 @@
       e.preventDefault();
       const name = document.getElementById('studentName').value;
       const msg = document.getElementById('formMessage');
-      msg.innerHTML = `<i class="fa-solid fa-circle-check"></i> Заявка для ученика ${name} успешно принята! Мы свяжемся с вами в WhatsApp.`;
+      msg.innerHTML = `<i class="fa-solid fa-circle-check"></i>Извините, записи на этот курс сейчас нет`;
       document.getElementById('courseForm').reset();
     }
   </script>
