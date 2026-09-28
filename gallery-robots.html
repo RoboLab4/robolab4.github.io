@@ -1,1 +1,567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-409578829');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Галерея роботов учеников | ROBO-LAB</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <style>
+    :root {
+      --cyan: #00f3ff;
+      --orange: #ff6b00;
+      --purple: #9d00ff;
+      --green: #00ff88;
+      --bg-dark: #050811;
+      --card-bg: rgba(13, 22, 41, 0.9);
+      --glass-border: rgba(0, 243, 255, 0.25);
+      --text: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(5, 8, 17, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-btn {
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: rgba(0, 243, 255, 0.05);
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.15);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.3rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title p {
+      color: var(--cyan);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* ОСНОВНОЙ СЛАЙДЕР С ФОТОГРАФИЯМИ */
+    .gallery-slider {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .main-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #000;
+    }
+
+    .slide-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    }
+
+    .slide-item.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Подпись поверх фото в стиле HUD */
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(0deg, rgba(5, 8, 17, 0.95) 0%, rgba(5, 8, 17, 0.6) 70%, transparent 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(0, 243, 255, 0.2);
+    }
+
+    .caption-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .caption-info p {
+      color: var(--cyan);
+      font-size: 0.95rem;
+    }
+
+    .slide-counter {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--orange);
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 107, 0, 0.4);
+    }
+
+    /* КНОПКИ НАВИГАЦИИ СЛАЙДЕРА */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(5, 8, 17, 0.7);
+      border: 1px solid var(--glass-border);
+      color: var(--cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-arrow:hover {
+      background: var(--cyan);
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px var(--cyan);
+    }
+
+    .nav-arrow.prev { left: 2.5rem; }
+    .nav-arrow.next { right: 2.5rem; }
+
+    /* ТОЧКИ (ИНДИКАТОРЫ) */
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      transform: scale(1.2);
+    }
+
+    /* ЛЕНТА ПРЕВЬЮ-МИНИАТЮР (10 ШТУК) */
+    .thumbnails-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cyan) rgba(255, 255, 255, 0.05);
+    }
+
+    .thumbnails-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .thumbnails-scroll::-webkit-scrollbar-thumb {
+      background: var(--cyan);
+      border-radius: 4px;
+    }
+
+    .thumb-item {
+      flex: 0 0 110px;
+      aspect-ratio: 16 / 9;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.5;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-item.active, .thumb-item:hover {
+      opacity: 1;
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+    }
+
+    footer {
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      margin-top: 3rem;
+      background: rgba(5, 8, 17, 0.9);
+    }
+
+    @media (max-width: 768px) {
+      .nav-arrow { width: 40px; height: 40px; font-size: 1rem; }
+      .nav-arrow.prev { left: 2rem; }
+      .nav-arrow.next { right: 2rem; }
+      .slide-caption { padding: 0.8rem; }
+      .caption-info h3 { font-size: 1rem; }
+      .caption-info p { font-size: 0.8rem; }
+      .thumb-item { flex: 0 0 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-btn">
+        <i class="fa-solid fa-arrow-left"></i> На главную
+      </a>
+      <span class="brand-title">ROBO-LAB / ГАЛЕРЕЯ</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>Робототехнические проекты</h1>
+      <p>Выставка собранных и запрограммированных моделей учеников клуба ROBO-LAB</p>
+    </div>
+
+    <!-- Основной блок галереи -->
+    <div class="gallery-slider">
+      
+      <!-- Просмотрщик (Viewport) -->
+      <div class="main-viewport" id="viewport">
+
+        <!-- Кнопки управления -->
+        <button class="nav-arrow prev" id="prevBtn" title="Предыдущий слайд">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="nav-arrow next" id="nextBtn" title="Следующий слайд">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Кадры (Слайды r1.jpg - r10.jpg) -->
+        <div class="slide-item active">
+          <img src="r1.jpg" alt="Робот 1">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Автономный сортировщик деталей</h3>
+              <p>Платформа: LEGO SPIKE Prime • Программирование: Python</p>
+            </div>
+            <div class="slide-counter">01 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r2.jpg" alt="Робот 2">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Скоростной робот-трекер по линии</h3>
+              <p>Платформа: R:ED X • Датчики: ИК-массив высокого разрешения</p>
+            </div>
+            <div class="slide-counter">02 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r3.jpg" alt="Робот 3">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Базовый манипулятор с захватом</h3>
+              <p>Платформа: Makeblock Ultimate 2.0 • Металлическая механика</p>
+            </div>
+            <div class="slide-counter">03 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r4.jpg" alt="Робот 4">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Метеостанция с OLED-дисплеем</h3>
+              <p>Платформа: Arduino Uno • Схемотехника и C++</p>
+            </div>
+            <div class="slide-counter">04 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r5.jpg" alt="Робот 5">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Шагающий четырехопорный робот</h3>
+              <p>Платформа: LEGO SPIKE Prime • Сложная кинематика</p>
+            </div>
+            <div class="slide-counter">05 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r6.jpg" alt="Робот 6">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Робот-сумоист для соревнований</h3>
+              <p>Платформа: R:ED X • Ультразвуковая локация</p>
+            </div>
+            <div class="slide-counter">06 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r7.jpg" alt="Робот 7">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Гусеничный вездеход на радиоуправлении</h3>
+              <p>Платформа: Makeblock MegaPi • Bluetooth-модуль</p>
+            </div>
+            <div class="slide-counter">07 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r8.jpg" alt="Робот 8">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Умный шлагбаум с RFID-сканером</h3>
+              <p>Платформа: Arduino & Электроника • Макетная плата</p>
+            </div>
+            <div class="slide-counter">08 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r9.jpg" alt="Робот 9">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Робот-балансир на гироскопе</h3>
+              <p>Платформа: LEGO SPIKE Prime • Алгоритм обратной связи</p>
+            </div>
+            <div class="slide-counter">09 / 10</div>
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <img src="r10.jpg" alt="Робот 10">
+          <div class="slide-caption">
+            <div class="caption-info">
+              <h3>Проект автоматической теплицы</h3>
+              <p>Платформа: Arduino Uno • Полив и контроль температуры</p>
+            </div>
+            <div class="slide-counter">10 / 10</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Точки-индикаторы -->
+      <div class="dots-container" id="dotsContainer"></div>
+
+      <!-- Миниатюры снимков снизу -->
+      <div class="thumbnails-scroll" id="thumbScroll">
+        <div class="thumb-item active"><img src="r1.jpg" alt="r1"></div>
+        <div class="thumb-item"><img src="r2.jpg" alt="r2"></div>
+        <div class="thumb-item"><img src="r3.jpg" alt="r3"></div>
+        <div class="thumb-item"><img src="r4.jpg" alt="r4"></div>
+        <div class="thumb-item"><img src="r5.jpg" alt="r5"></div>
+        <div class="thumb-item"><img src="r6.jpg" alt="r6"></div>
+        <div class="thumb-item"><img src="r7.jpg" alt="r7"></div>
+        <div class="thumb-item"><img src="r8.jpg" alt="r8"></div>
+        <div class="thumb-item"><img src="r9.jpg" alt="r9"></div>
+        <div class="thumb-item"><img src="r10.jpg" alt="r10"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>Персональный сайт-блог педагога дополнительного образования Свиренко В. И. &copy; 2026</p>
+  </footer>
+
+  <!-- Скрипт переключения слайдов -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide-item');
+      const thumbs = document.querySelectorAll('.thumb-item');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsContainer = document.getElementById('dotsContainer');
+      const viewport = document.getElementById('viewport');
+
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+
+      // Динамическое создание точек
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (idx === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(idx));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll('.dot');
+
+      function updateGallery() {
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('active', idx === currentIndex);
+        });
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+        });
+
+        thumbs.forEach((thumb, idx) => {
+          thumb.classList.toggle('active', idx === currentIndex);
+        });
+
+        // Прокрутка активной миниатюры в видимую область
+        thumbs[currentIndex].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+
+      function goToSlide(index) {
+        currentIndex = index;
+        if (currentIndex < 0) currentIndex = totalSlides - 1;
+        if (currentIndex >= totalSlides) currentIndex = 0;
+        updateGallery();
+      }
+
+      prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+      nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+      thumbs.forEach((thumb, idx) => {
+        thumb.addEventListener('click', () => goToSlide(idx));
+      });
+
+      // Переключение стрелками клавиатуры
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+        if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+      });
+
+      // Поддержка свайпов на мобильных устройствах
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      viewport.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 40) goToSlide(currentIndex + 1);
+        if (touchEndX > touchStartX + 40) goToSlide(currentIndex - 1);
+      }
+    });
+  </script>
+</body>
+</html>
