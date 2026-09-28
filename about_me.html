@@ -35,7 +35,21 @@
       line-height: 1.6;
       font-size: 1.1rem;
     }
+.info-list-mini i { color: var(--cyan); width: 18px; }
 
+/* Ссылка на сайт школы */
+.info-list-mini a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(148, 163, 184, 0.6);
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+.info-list-mini a:hover {
+  color: var(--cyan);
+  text-decoration-color: var(--cyan);
+}
     header {
       background: rgba(5, 8, 17, 0.95);
       backdrop-filter: blur(12px);
@@ -406,8 +420,12 @@
         
         <div class="info-list-mini">
           <div><i class="fa-solid fa-location-dot"></i> <span>Костанайская обл., г. Рудный</span></div>
-          <div><i class="fa-solid fa-school"></i> <a href="https://school4rdn.edu.kz">/<span>КГУ "ШКОЛА-ЛИЦЕЙ № 4 ОТДЕЛА ОБРАЗОВАНИЯ ГОРОДА РУДНОГО" УПРАВЛЕНИЯ ОБРАЗОВАНИЯ АКИМАТА КОСТАНАЙСКОЙ ОБЛАСТИ</span></a>
-    </div>
+          <div>
+  <i class="fa-solid fa-school"></i>
+  <a href="https://school4rdn.edu.kz">
+    <span>КГУ "ШКОЛА-ЛИЦЕЙ № 4 ОТДЕЛА ОБРАЗОВАНИЯ ГОРОДА РУДНОГО" УПРАВЛЕНИЯ ОБРАЗОВАНИЯ АКИМАТА КОСТАНАЙСКОЙ ОБЛАСТИ</span>
+  </a>
+</div>
           <div><i class="fa-solid fa-microchip"></i> <span>Руководитель кружка «ROBO-LAB»</span></div>
         </div>
       </div>
