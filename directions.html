@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
   <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-409578829');
-</script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-409578829');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Направления обучения | ROBO-LAB</title>
@@ -180,6 +180,32 @@
       opacity: 0.8;
     }
 
+    /* МЕДИА-БЛОК ДЛЯ ФОТОГРАФИИ 16:9 */
+    .card-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #000;
+      position: relative;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease, filter 0.3s ease;
+      filter: brightness(0.95) contrast(105%);
+    }
+
+    .card:hover .card-media img {
+      transform: scale(1.04);
+      filter: brightness(1.05) contrast(110%);
+    }
+
     .card-body p {
       color: #cbd5e1;
       margin-bottom: 1.5rem;
@@ -270,6 +296,11 @@
             <i class="fa-solid fa-cubes card-icon" style="color: #ffcc00;"></i>
           </div>
           
+          <!-- Фото блока 16:9 -->
+          <div class="card-media">
+            <img src="f1.jpg" alt="LEGO SPIKE Prime">
+          </div>
+
           <div class="card-body">
             <p>
               Флагманский образовательный набор LEGO, объединяющий яркие детали, мощный хаб с 6 портами, датчики и моторы. Позволяет быстро собирать и программировать автономных роботов для решения инжиниринговых задач.
@@ -301,6 +332,11 @@
               <div class="card-subtitle">Программирование & Схемотехника</div>
             </div>
             <i class="fa-solid fa-bolt card-icon" style="color: var(--cyan);"></i>
+          </div>
+
+          <!-- Фото блока 16:9 -->
+          <div class="card-media">
+            <img src="f1.jpg" alt="Arduino и Электроника">
           </div>
 
           <div class="card-body">
@@ -336,6 +372,11 @@
             <i class="fa-solid fa-robot card-icon" style="color: #ff0055;"></i>
           </div>
 
+          <!-- Фото блока 16:9 -->
+          <div class="card-media">
+            <img src="f1.jpg" alt="R:ED X Robotics">
+          </div>
+
           <div class="card-body">
             <p>
               Профессиональные образовательные наборы с прочными конструктивными элементами, мощными моторами и контроллером R:ED. Идеально подходят для подготовки к международным фестивалям по спортивной робототехнике.
@@ -367,6 +408,11 @@
               <div class="card-subtitle">Металлическая робототехника</div>
             </div>
             <i class="fa-solid fa-gear card-icon" style="color: var(--orange);"></i>
+          </div>
+
+          <!-- Фото блока 16:9 -->
+          <div class="card-media">
+            <img src="f1.jpg" alt="Makeblock Ultimate 2.0">
           </div>
 
           <div class="card-body">
